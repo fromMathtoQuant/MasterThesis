@@ -1,0 +1,429 @@
+\documentclass[../main.tex]{subfiles}
+
+\title{Capitolo 3 - Variazioni di strutture di Hodge}
+\author{Edoardo Manini}
+\date{Febbraio 20, 2025}
+
+\begin{document}
+\ifSubfilesClassLoaded{
+\maketitle
+\tableofcontents
+}{}
+
+
+Now we want to give a good definition of what it means to have (polarized) Hodge structures that vary in families of compact K\"{a}hler manifolds. To do this we define the concept of a \emph{polarized variation of Hodge structure} and the \emph{period map} associated to it. Motivated by the compact K\"{a}hler case, we will then be able to give a more general definition of (integral polarized) \emph{variation of Hodge structure} $\Z$-PVHS. 
+
+We are interested in studying this theory to understand what happens, as we deform a K\"{a}hler manifold, to the Hodge structure on its cohomology.
+
+
+\subsection{Local Period Domain} \label{sect:locmap}
+
+Consider the following set up. 
+Let $f\colon \calX \to B$ be a proper holomorphic submersion onto a connected complex manifold $B$, whose fibres $X_b$ are compact K\"{a}hler manifolds for all $b \in B$. If $0 \in B$ is a reference point, we say that $ \calX $ is a \emph{family} of deformations of the fibre $X_0$.
+Assume that there exists $\omega \in H^2(\calX,\Z)$ such that, for each $b \in \Delta$, the restriction $\omega_b := \omega|_{X_b}$ is an integral K\"{a}hler class. This happens for example if  $f\colon \calX \to B$ is a family of projective manifolds $f\colon \calX \subset \PP^n \times B \to B$ and $f$ is the restriction to $\calX$ of the projection to $B$, since $\calX$ has the K\"{a}hler form coming from projective space, which is integral.
+This induces a polarized Hodge structure on the cohomology of the fibres $H^n(X_b,\Z)$ as we have seen before, which varies with $b \in B$. This is the main example of a \emph{variation of polarized Hodge structure} which forms the ispiration to naturally give a general definition for such objects.
+
+If $B$ is a contractible manifold, we see that smoothness of $f$ implies that the fibres $X_b$ are all diffeomorphic, and Ehresmann's theorem \cite[Thm. 9.3]{Voi07} shows that $\calX$ is diffeomorphic to $X_b \times B$ over $B$, for any $b \in B$. 
+Therefore, there is a unique isomorphism $H^n(X_b,\Z) \cong H^n(X_{b'},\Z)$ for any $b,b'\in B$. 
+Thus, we can define $H_{\Z} \defeq H^n(X_b,\Z)/\mathrm{torsion}$ and $H_\CC \defeq H_{\Z} \otimes_{\Z} \C \cong H^n(X_b,\C)$, and these definitions do not depend on the choice of $b \in B$. 
+In the same manner as before, $\omega$ induces a bilinear form $Q$ on $H_{\Z}$, which can be extended to $H_\CC$ by linearity.
+
+However, there is no guarantee that the isomorphisms $H^n(X_b,\C) \cong H^n(X_{b'},\C)$ preserve the Hodge subspaces and in fact in general they \emph{do not} preserve the Hodge decompositions; but instead, the Hodge decomposition of $H^n(X_b,\C)$ varies in a continuous way with $b \in B$.
+Furthermore, even though the subspaces $H^{p,q}$ vary with $b \in B$, it can be proven that their dimensions $h^{p,q} := \dim(H^{p,q})$ remain fixed \cite[Ch. 9]{Voi07}.
+To see this, note that the sum of Hodge numbers $(p,q)$ for $p + q = n$ is a constant number, the $n$-th Betti number of the fiber, which is constant because the family is differentiably locally trivial. To show that each of the numbers $h^{p,q}(X_b)$ is constant, it is therefore sufficient to show that they satisfy an upper-semicontinuity property \cite[Cor. 9.19]{Voi07} :
+\[
+h^{p,q}(X_b) \leq h^{p,q}(X_0), \text{ for } |b - 0| < \epsilon 
+\]
+One can also think of this variation of the Hodge decomposition of the cohomology of the fibres of the family as a variation of complex structure on a fixed manifold since the $X_b$ are all diffeomorphic.
+
+
+In an attempt to classify all possible Hodge decompositions on a given complex vector space, We now define a moduli space for these Hodge decompositions with fixed type.
+
+\begin{defn} \label{Ddefn} Fix a type $\underline{h} = (h^{k,0}, \dots , h^{0,k})$ (with $h^{p,q}=h^{q,p}$) and a pair $(H_\Z, Q)$, $H_\Z$ a lattice and $Q$ an alternating/symmetric nondegenerate bilinear form depending on the partiy of $k$. 
+The \emph{local period domain} is 
+ \begin{align*}
+ \calD =  \left\{ \{H^{p,q}\}  \ \middle\vert \begin{array}{l}
+    H^{p,q} \subset H_\CC \quad \text{ s.t.} \quad H_\CC = \bigoplus_{p+q=n} H^{p,q},  \\
+    \dim (H^{p,q}) = h^{p,q} \quad \textrm{and} \quad Q \text{ satisfies } \eqref{2HdgRiem} \text{ and } \eqref{3HdgRiem}
+  \end{array}\right\}
+  \end{align*}
+the set of all collections of subspaces $\{H^{p,q}\}$ of $H_\CC$ such that $H_\CC = \bigoplus_{p+q=n} H^{p,q}$ and $\dim (H^{p,q}) = h^{p,q} \left( =h^{q,p}= \dim (H^{q,p}) \right)$, on which $Q$ satisfies the Hodge-Riemann bilinear relations \eqref{2HdgRiem} and \eqref{3HdgRiem}.
+\end{defn}
+
+
+\begin{rem} In terms of filtrations, $\calD$ may be defined as the set of all filtrations 
+\[ H_\CC =F^0 \supset F^1 \supset \cdots \supset F^n \supset \{0\},\]
+with $\dim(F^p) = h^{n,0} + \cdots + h^{p,n-p}$, on which $Q$ satisfies \eqref{2HdgRiemprime}$^\prime$ and \eqref{3HdgRiemprime}$^\prime$.
+\end{rem}
+
+Observe that a filtration satisfying  \eqref{2HdgRiemprime}$^\prime$ and \eqref{3HdgRiemprime}$^\prime$ is also a Hodge filtration, i.e. it satisfies $F^p \cap \overline{F^{q+1}} = 0$. Indeed, if $x \in F^p  \cap \overline{F^{q+1}} $, then $\overline{x} \in \overline{ \overline{F^{q+1}}} = F^{q+1}$, hence by \eqref{2HdgRiemprime}$^\prime$, $Q(x,\overline{x})=0 $, but $x \in F^p \cap \overline{F^{q}} $, so by \eqref{3HdgRiemprime}$^\prime$, $x=0$.
+
+$\calD$ is the space of all Hodge structures of the given type  $\underline{h}$ polarized by $Q$. One can realize $\calD$ as a (real) manifold (see \cite[Sect. 4.3]{CMSP03}). Indeed defining the flag variety
+\[
+Fl(\underline{h}, H_\C) = \left\{ \text{ desc. filtrations } F^\bullet \text{ on } H_\C \text{ s.t. } h^{p,q} = \dim F^p / F^{p+1} \right\},
+\]
+it naturally has a structure as a projective algebraic variety since it is a subvariety of products of Grassmanians $Gr(f^0,H_\CC) \times \cdots \times Gr(f^n,H_\C)$ where $f^p = h^{n,0} + \cdots + h^{p,n-p} $.
+The orthogonal flag variety $\check{\calD} \defeq OFl(\underline{h},H_\C) \subseteq Fl(\underline{h}, H_\C)$ is the closed algebraic subvariety obtained imposing the (closed) condition $(F^p)^\perp =F^{k-p+1}$ for all $p$, i.e. only the first bilinear relation \eqref{2HdgRiemprime}$^\prime$ but not necessarily the second \eqref{3HdgRiemprime}$^\prime$.  $\check{\calD}$ is called the \emph{compact dual} of $\calD$ and can be equivalently defined as the set of all collections of subspaces $\{H^{p,q}\}$ as in Defn. \ref{Ddefn} that satisfy the first Hodge-Riemann bilinear relation  \eqref{2HdgRiem} but not necessarily the second  \eqref{3HdgRiem}.
+
+
+Finally, imposing the second Hodge-Riemann bilinear relation \eqref{3HdgRiem} gives an open condition $i^{p-q}(-1)^{\frac{k(k-1)}{2}} Q(v, \bar v) > 0$ for all $0 \neq v \in F^p \cap \overline{F^q}$.
+In conclusion, the period domain $\calD$ is embedded as an open subvariety in $\check{\calD}$, hence in particular $\calD$ is a complex manifold.
+
+Assuming $B$ is simply connected, there is a well-defined morphism $\phi\colon B \to \calD$, where $\phi$ takes $b \in B$ to the point in $\calD$ corresponding to the Hodge decomposition of $H^n_{\text{prim}}(X_b,\C)$. This morphism is called the  \emph{local period mapping}. 
+
+The bundles $\calH^{p,q}_\CC \defeq  \bigcup_{b \in B} H^{p,q}(X_b,\C) $ are $\calC^\infty$-subbundles of the Hodge bundle $\calH^n_\C = \bigcup_{b \in \Delta} H^n(X_b,\C) = R^nf_*\C_{\calX}$ of the family but are in general \emph{not} holomorphic subbundles.
+
+Hence we consider other subbundles, namely the ones induced by the Hodge filtration $\{F^p_b\}$ on $H^n(X_b,\C)$. They form a filtration of the vector bundle (or locally free sheaf of $\calO_B$-modules) $\calH^n = \calH^n_\C \otimes \calO_B$ by holomorphic subbundles. We call them \emph{Hodge subbundles} and denote them $\calF^p\calH^n \subset \calH^n$.
+Equipping $\calH^n$ with the flat connection $\nabla$, called \emph{Gauss-Manin connection}, we find that these bundles have the following property known as Griffiths transversality \cite[Sect. 4.4]{CMSP03}:
+\begin{align*}
+\nabla \calF^p\calH^n &\subset \calF^{p-1}\calH^n \otimes \Omega^1_B && \mathrm{(\emph{Griffiths transversality})}.
+\end{align*}
+It can also be shown that the local period mapping $\phi$ is holomorphic \cite[Thm. 4.5.6]{CMSP03}.
+
+To illustrate these ideas, we now compute the local period domains for the two examples studied in the previous section.
+
+\begin{es} Let $E$ be an elliptic curve. 
+The polarized Hodge structure on the first cohomology $H_\ZZ = H^1(E,\Z)$ has Hodge numbers $h^{1,0} = h^{0,1} = 1$. Hence we are interested in polarized hodge strcture of weight $1$ and type $(1,1)$ on the lattice $\Z \cdot \alpha \oplus  \Z \cdot \beta$ with the standard symplectic form $\alpha\cdot \beta = 1$. The Hodge filtration is
+\[ H_\CC = F^0 \supset F^1 \supset \{0\},\]
+where $F^1 = H^{1,0}$. We see that $\calD$ is the set of all filtrations $\C^2 \supset F^1 \supset \{0\}$ with $\dim(F^1) = 1$, on which $Q$ satisfies the conditions \eqref{2HdgRiemprime}$^\prime$ and \eqref{3HdgRiemprime}$^\prime$.
+
+We see that giving a point in  $\calD$ is equivalent to give $ F^1=H^{1,0}$, a point in $Gr(1,\CC^2) = \PP^1_\CC$. 
+To do this it suffices to give $\lambda \in H_\CC$ that spans $F^1$. 
+Furthermore, in order for this to define a Hodge structure we need that $H^{1,0} \cap \overline{H^{1,0}} = {0}$, i.e. $H^{1,0} \in Gr(1,\CC^2) \setminus Gr(1,\RR^2) =  \PP^1_\CC \setminus  \PP^1_\RR = \mathfrak{H} \cup -\mathfrak{H}$.
+
+The Hodge-Riemann bilinear relations \eqref{2HdgRiemprime}$^\prime$ and \eqref{3HdgRiemprime}$^\prime$ become
+\begin{enumerate}[(1')]\addtocounter{enumi}{1}\setlength{\itemindent}{\parindent}
+\item $Q(\lambda,\lambda) = 0$,
+\item $i Q(\lambda,\overline{\lambda}) > 0$.
+\end{enumerate}
+We describe $\lambda$ in terms of the canonical basis as $\lambda = z_1\alpha + z_2 \beta$, for $z_1,z_2 \in \C$. The relations become
+\begin{enumerate}[(1')]\addtocounter{enumi}{1}\setlength{\itemindent}{\parindent}
+\item \label{new2prime} $z_1z_2 - z_2z_1 = 0$,
+\item \label{new3prime} $i (z_1\overline{z_2} - z_2\overline{z_1} ) > 0$.
+\end{enumerate}
+\eqref{new2prime}$^\prime$ is empty in this case and \eqref{new3prime}$^\prime$ implies $z_1 \neq 0$. Thus we can replace $\lambda$ so that $\lambda = \alpha + z_2 \beta$ (i.e. set $z_1 = 1$). Then (3') says $i (\overline{z_2} - z_2 ) > 0$, i.e. $i (-2i \mathfrak{Im} (z_2)) > 0$, hence
+\begin{enumerate}[(1')]\addtocounter{enumi}{2}\setlength{\itemindent}{\parindent}
+\item $\mathfrak{Im} (z_2) > 0$.
+\end{enumerate}
+Because identifying $z_2$ is the same as identifying $\lambda$, which uniquely determines $F^1$, we find that the local period domain for elliptic curves is the complex upper half-plane
+\[
+\calD \cong \mathfrak{H} \defeq \{z \in \C \mid \mathfrak{Im}(z) > 0\}.
+\]
+\end{es}
+
+\begin{es} 
+We now turn to the a curve $C$ of genus $g \geq 1$. The polarized Hodge structure on the first cohomology $H_\Z = H^1(C,\Z)$ has Hodge numbers $h^{1,0} = h^{0,1} = g$. 
+So we are interested in the space of all polarized weight $1$ Hodge structures of type $(g, g)$ on $(V, Q)$, $V \simeq \Z^{2g}$ and $Q$ the standard symplectic form given on a standard symplectic basis $\{ \alpha_i, \beta_i \}$ by  $Q(\alpha_i,\alpha_j) = Q(\beta_i,\beta_j) = 0$ for all $i,j$ and $Q(\alpha_i,\beta_j) = \delta_{ij}$.
+
+As in the case of the elliptic curve, the Hodge filtration is
+\[ H_\CC = F^0 \supset F^1 \supset \{0\},\]
+where $F^1 = H^{1,0}$. We see that $\calD$ is the set of all filtrations $\C^{2g} \supset F^1 \supset \{0\}$ with $\dim(F^1) = g$, on which $Q$ satisfies the Hodge-Riemann bilinear relations \eqref{2HdgRiemprime}$^\prime$ and \eqref{3HdgRiemprime}$^\prime$.
+
+To give a point in $\calD$ is equivalent to give a basis $\{\lambda_1,\ldots,\lambda_g\}$ for the subspace $F^1$. Write $(\lambda_1,\ldots,\lambda_g)$ in terms of the canonical basis $\{\alpha_i,\beta_j\}$ as $(\lambda_1,\ldots,\lambda_g) = (\alpha_1,\ldots,\alpha_g,\beta_1,\ldots,\beta_g)Z$, where $Z = \left(\begin{array}{c} Z_1 \\ Z_2 \end{array} \right)$ is a $2g \times g$ complex matrix. Relations \eqref{2HdgRiemprime}$^\prime$ and \eqref{3HdgRiemprime}$^\prime$ may then be written in terms of the $g \times g$ matrices $Z_1$ and $Z_2$ as follows:
+\begin{enumerate}[(1')]\addtocounter{enumi}{1}\setlength{\itemindent}{\parindent}
+\item \label{new2primehere} $Z_1^TZ_2 - Z_2^TZ_1 = 0$, i.e. the matrix $Z_1^TZ_2$ is symmetric, and
+\item \label{new3primehere} $i (Z_1^T\overline{Z_2} - Z_2^T\overline{Z_1} )$ is a positive-definite matrix.
+\end{enumerate}
+
+In particular, \label{new3primehere}$^\prime$ here implies that $Z_1$ is invertible. We may therefore replace $(\lambda_1,\ldots,\lambda_g) \mapsto (\lambda_1,\ldots,\lambda_g)Z_1^{-1}$, so that $Z$ becomes $Z = \left(\begin{array}{c} I_g \\ Z_2 \end{array} \right)$. Then the conditions above become
+\begin{enumerate}[(1')]\addtocounter{enumi}{1}\setlength{\itemindent}{\parindent}
+\item $Z_2^T - Z_2 = 0$, i.e. the matrix $Z_2$ is symmetric, and
+\item $\mathfrak{Im} (Z_2)$ is positive definite.
+\end{enumerate}
+Thus, we find that in this case the local period domain for genus $g$ curves is the \emph{Siegel upper half-space of degree $g$}
+\[\calD \cong \mathfrak{H}_g := \{Z \in M_{g\times g}(\C) \mid Z\ \mathrm{is}\ \mathrm{symmetric}\ \mathrm{and}\ \mathfrak{Im}(Z)\ \mathrm{is}\ \mathrm{positive}\ \mathrm{definite}\}.\]
+
+This is a Hermitian symmetric space of non-compact type since it can be realized as the quotient $\operatorname {Sp}(2g,\RR) / U(g)$ of a simple Lie group by a (maximal in this case) compact subgroup. Here we denote by $\operatorname {Sp}(2g,\RR) = \left\{ M\in M_{2g\times 2g}(\RR):M^{\mathrm {T} } J M=J \ \right\}$ the classic symplectic group where 
+\[ 
+J =\left( \begin{array}{cc} 0 & I_g \\ -I_g & 0 \end{array} \right),
+\] and we denote by $U(g) = \left \{
+ M\in M_{g\times g}(\CC): M^* =M^{-1} \right\}$ the unitary group. This can be seen by showing that $\operatorname {Sp}(2g, \RR)$ acts transitively on $\mathfrak{H}_g$ and that the isotropy group at $i1_g$ is $U(g)$. For an introduction to symmetric spaces see \cite{Hel64}.
+\end{es}
+
+\begin{rem}
+    It can actually be proved that all period domains are of this type. Namely we have a theorem giving a description of all  period domains of which we only give the statement here. For a proof see  \cite[Thm. 4.4.4]{CMSP03}.
+    
+    \begin{theorem}
+        Let $\calD$ be a period domain for weight $n$ Hodge structures $(H_\ZZ,H^{p,q})$ with Hodge type  $\underline{h} = (h^{n,0}, \dots , h^{0,n})$. Then $\calD= G / V$ for $G$ a simple real Lie group.
+        In details,
+        \begin{enumerate}
+            \item  For odd weight $n = 2m + 1$ we have
+            \begin{align*}
+                G &\simeq Sp(g, \RR), \quad \dim H_\CC = 2g, \\
+V &= \prod_{p\leq m} U(h^{p,q}).
+            \end{align*}
+In this case $\calD$ is connected and non-compact.
+\item For even weight $n = 2m$ we have
+\begin{align*}
+G &\simeq SO(s, t), \qquad s =\sum_{p \text{  even} }h^{p,q}, t =\sum_{p \text{ odd} } h^{p,q},  \\
+V &= \prod_{p<m} U(h^{p,q}) \times SO(h^{m,m}).
+\end{align*}
+In this case, if $s, t > 0$, the domain $\calD$ consists of two isomorphic connected components and if $s = 0 \text{ or } t = 0$, the domain $\calD$ is connected and compact.
+        \end{enumerate}
+    \end{theorem}
+\end{rem}
+
+
+\subsection{Global Period domain} \label{sect:globmap}
+
+We now want to study families $f\colon \calX \to B$ over a base that is not contractible. 
+If our base $B$ is a not necessarily simply connected complex manifold, then the isomorphism $H^n(X_b,\Z) \cong H^n(X_{b'},\Z)$ for $b,b' \in B$ is not necessarily unique.
+This means that the period mapping is no longer well-defined.
+Indeed there is no longer a unique homotopy class of diffeomorphisms relating the fibers $X_b$ and $X_0$ since different homotopy classes of paths in $B$ induce possibly different homotopy classes of diffeomorphisms and therefore possibly different isomorphisms of cohomology groups. As a consequence there is no longer a well-defined flag for each fiber but the flag is defined only up to the action of the fundamental group.
+In order to compensate for this, we must quotient the period domain $\calD$ by the action of monodromy.
+Let
+\begin{equation} \label{Geq} \mathrm{Aut}(H_{\ZZ},Q) := \{g\colon H_{\Z} \to H_{\Z} \mid Q(g\xi, g\eta) = Q(\xi, \eta)\ \mathrm{for}\ \mathrm{all}\ \xi,\eta \in  H_{\Z}\}.\end{equation}
+This group acts on $\calD$. The map $f\colon \calX \to B$ defines a fibre bundle on $B$, or a locally constant sheaf of abelian groups
+\[\calH_{\Z}^n = \bigcup_{b \in B} H^n(X_b,\Z) / (\text{torsion}) = R^nf_*\Z_{\calX} / (\text{torsion}) \] 
+which in turn defines an action of the fundamental group $\pi_1(B)$ on a fibre $H_{\Z} = H^n(X_b,\Z) / (\text{torsion})$.
+We have a monodromy representation
+\[\varrho \colon \pi_1(B) \to \mathrm{Aut}(H_{\ZZ},Q).\]
+
+Suppose that $\Gamma \subset \mathrm{Aut}(H_{\ZZ},Q)$ is the smallest subgroup containing the image of $\varrho$. We call it the \emph{Monodromy group}. Then there is a well-defined map $\phi\colon B \to \Gamma \backslash \calD$ given by $b \mapsto [F^\bullet_b]$, where $F^\bullet_b$ is the hodge filtration of $P^k(X_b, \CC)$.
+This is called the \emph{global period mapping}. The quotient $ \Gamma \backslash \calD$ is called the \emph{global period domain} for the family $f$.
+
+We now calculate global period domains in our examples.
+
+\begin{es} We first look at the case of an elliptic curve $E$, the group $\mathrm{Aut}(H_{\ZZ},Q)$ is the group of linear transformations $\Z^2 \to \Z^2$ that preserve the bilinear form $Q$. This is precisely the group $\mathrm{SL}(2,\Z)$ since for a linear transformations $\varphi \in \mathrm{Aut}(H_{\ZZ},Q) $, $\varphi$ has to be rapresented by a matrix $\left( \begin{array}{cc} a & b \\ c & d \end{array} \right) \in M_{2\times 2}(\Z)$ which satisfies $Q(\varphi(x),\varphi(y))=Q(x,y) \quad \forall x,y \in \ZZ^2$, i.e. 
+\[
+\left( \begin{array}{cc} a & b \\ c & d \end{array} \right)^T  \cdot \left( \begin{array}{cc} 0 & 1 \\ -1 & 0 \end{array} \right) \cdot \left( \begin{array}{cc} a & b \\ c & d \end{array} \right) = \left( \begin{array}{cc} 0 & 1 \\ -1 & 0 \end{array} \right)
+\]
+which happens if and only if $ad-bc=1$, or $\varphi \in  \mathrm{SL}(2,\Z)$.
+
+Recall that we identified a point $F^1$ in $\calD$ with an element $\lambda \in H_\CC$ that spans $F^1$ and we saw that the in the standard basis $ \{ \alpha, \beta \}$ we can write $\lambda$ as $\alpha + z\beta$ with $\im z > 0$. 
+We have that $\lambda=z_1\alpha + z_2\beta$,  $\varphi \cdot \lambda = (az_1+bz_2)\alpha + (cz_1+dz_2) \beta $. Hence the general element $\varphi$ sends  $\alpha + z\beta$ to $(a+bz)\alpha + (c+dz) \beta$ which is linearly equivalent to $\alpha + \frac{c+dz}{a+bz} \beta$.
+
+In other words this group acts on $\calD \cong \mathfrak{H}$ by
+\[ \left( \begin{array}{cc} a & b \\ c & d \end{array} \right) \cdot z = \frac{c + dz}{a + bz}. \]
+
+Note that the negative identity matrix acts trivially, so we get an induced action of the modular group $\Gamma := \mathrm{PSL}(2,\Z)$ on $\calD$. For a family of elliptic curves, the image of the monodromy will be contained in $\mathrm{PSL}(2,\Z)$, so we can say that the period domain for a family of elliptic curves will be contained in 
+\[ \Gamma \backslash \calD \cong \mathrm{PSL}(2,\Z) \backslash \mathfrak{H}.\]
+\end{es}
+
+\begin{es}[Legendre family]
+Consider the Legendre family of elliptic curves, given by the polynomial
+\[
+y^2=x(x-1)(x-b).
+\]
+We homogenize it and set
+ \[
+X \defeq  \left\{ \quad ([x_0, x_1, x_2], b) \in \PP^2 \times B \quad | \quad x_2^2x_0 = x_1(x_1 - x_0)(x_1 - bx_0) \quad \right\},
+ \]
+where $B = \C \setminus \{0, 1\}$ with $\pi \colon X \to B$ the projection. Then $X \xrightarrow{\pi} B$ is a family and the fibre $X_b$ is a smooth plane cubic with $J$-invariant
+\[
+J(X_b) = \frac{(b^2 - b + 1)^3}{b^2(b - 1)^2} .
+\]
+Note that the fibres are diffeomorphic, but in general not biholomorphic since we know that two elliplitic curves are biholomorhic if and only if they have the same $J$-invariant.
+
+The monodromy group $\Pi$ is the smallest subgroup containing the image of the map
+\[
+\rho \colon \pi_1(\CC \setminus \{0,1\},p) \lra \mathrm{SL}(2,\Z).
+\]
+Here $\pi_1(\CC \setminus \{0,1\},p)$ is a free abelian goup on two generators representing the loops around $0$ and $1$,. Let's denote them $a$ and $b$ . One can calculate, using the Picard-Lefschetz formula, see \cite[Sect. 1]{CMSP03}, that their images are
+\begin{align*}
+    A=\rho(a)= \left( \begin{array}{cc} 1 & 2 \\ 0 & 1 \end{array} \right) \qquad \text{ and } \qquad B=\rho(b)= \left( \begin{array}{cc} 1 & 0 \\ -2 & 1 \end{array} \right).
+\end{align*}
+Therefore the monodromy group $\Pi$ is $\langle A,B \rangle$.
+The two matrices are congruent modulo $2$ to the identity matrix, so every matrix in $\Pi$ has this property. Let
+\[
+\Gamma(N) \defeq  \{ M \in \mathrm{SL}(2, \Z) | M \equiv Id \mod N \}.
+\]
+It is a normal subgroup of finite index in $\mathrm{SL}(2, \Z)$ and  we have seen that $\Pi$ is a subgroup of $\Gamma(2)$.
+One can actually see (cfr. \cite{Cl80}) that $\Pi = \Gamma(2)$, and that it is a subgroup of index $6$ in $\mathrm{SL}(2, \Z)$, hence of index $3$ in $\mathrm{PSL}(2, \Z)$.
+\end{es}
+
+\begin{es} Now let's look at the case of a curve $C$ of genus $g \geq 1$. The group $\mathrm{Aut}(H_{\ZZ},Q)$ is the group of linear transformations $\Z^{2g} \to \Z^{2g}$ that preserve the bilinear form $Q$, which is precisely the group $\mathrm{Sp}(2g,\Z)$
+ since for a linear transformations $\varphi \in \mathrm{Aut}(H_{\ZZ},Q) $, $\varphi$ has to be rapresented by a matrix $\left( \begin{array}{cc} A & B \\ C & D \end{array} \right) \in M_{2g\times 2g}(\Z)$ which satisfies $Q(\varphi(x),\varphi(y))=Q(x,y) \quad \forall x,y \in \ZZ^{2g}$, i.e. 
+\[
+\left( \begin{array}{cc} A & B \\ C & D \end{array} \right)^T  \cdot \left( \begin{array}{cc} 0 & I_g \\ -I_g & 0 \end{array} \right) \cdot \left( \begin{array}{cc} A & B \\ C & D \end{array} \right) = \left( \begin{array}{cc} 0 & I_g \\ -I_g & 0 \end{array} \right)
+\]
+which is the condition for $\varphi$ to be in  $\mathrm{Sp}(2g,\Z)$.
+
+
+Recall that we identified a point $F^1$ in $\calD$ with a basis $ \{ \lambda_1, \dots , \lambda_g \} \subset H_\CC$ for $F^1$ and we saw that the in the standard basis $ \{ \alpha_i, \beta_j \}$ we can write $(\lambda_1, \dots , \lambda_g)$ as $(\alpha_1, \dots , \alpha_g ,\beta_1, \dots , \beta_g) \left(\begin{array}{c} I_g \\ Z \end{array} \right)$ with $Z$ symmetric and $\mathfrak{Im} Z$ positive definite. 
+
+We have that for $(\lambda_1, \dots, \lambda_g)=(\alpha_1, \dots , \alpha_g ,\beta_1, \dots , \beta_g) \left(\begin{array}{c} Z_1 \\ Z_2 \end{array} \right)$, $\varphi$ acts as $\varphi \cdot \lambda = (\alpha_1, \dots , \alpha_g ,\beta_1, \dots , \beta_g) \left(\begin{array}{c} A Z_1 + B Z_2 \\ CZ_1 + D Z_2 \end{array} \right) $. Hence the general element $\varphi$ sends  $ \left(\begin{array}{c} I_g \\ Z \end{array} \right)$ to $(\alpha_1, \dots , \alpha_g ,\beta_1, \dots , \beta_g) \left(\begin{array}{c} A + B Z \\ C + D Z \end{array} \right)$ which is linearly equivalent to 
+\[ (\alpha_1, \dots , \alpha_g ,\beta_1, \dots , \beta_g) \left(\begin{array}{c} I_g \\ {(C + D Z)}{(A +BZ)^{-1}}  \end{array} \right).
+\]
+
+In other words this group acts on $\calD \cong \mathfrak{H}_g$ by
+\[ \left( \begin{array}{cc} A & B \\ C & D \end{array} \right) \cdot Z = (C + DZ)(A + BZ)^{-1}, \]
+Note that the negative identity matrix $-I_{2g}$ acts trivially, so we get an induced action of the group $\Gamma_g := \mathrm{Sp}(2g,\Z) / \{\pm I_{2g}\}$ on $\calD$. The period domain for a family of curves of genus $g \geq 1$ is contained in
+\[ \Gamma \backslash \calD \cong \Gamma_g \backslash \mathfrak{H}_g.\]
+
+This is not a complex manifold because of the presence of fixed points of the action. However, since $\mathrm{Sp}(2g, \Z) \subset \mathrm{Sp}(2g, \RR)$ is discrete and $U(g)$ is compact it can be shown (\cite[Sect. 1.2]{CMSP03}), that the action is properly discontinuous, i.e. we obtain an analytic space.
+\end{es}
+
+Define $\calM_g= \left\{ \text{isomorphism classes of genus g riemann surfaces} \right\}$ and $\calA_g \defeq \mathrm{Sp}(2g, \Z) \backslash \calH_g = \mathrm{Sp}(2g, \Z) \backslash  \mathrm{Sp}(2g, \RR) /U(g)$.
+\begin{defn}
+    The Torelli map 
+    \[
+    \calM_g \lra \calA_g
+    \]
+    is defined by sending $[C]$ to the polarized Hodge structure on $H^1(C, \Z)$. 
+\end{defn}
+Choosing a symplectic basis $\{\alpha_i,\beta_j\}$ of $H^1(C, \Z)$ means giving an isometry of polarized lattices $\phi \colon (H^1(C, \Z), Q) \to (\Z^{2g}, \cdot)$ to the standard symplectic lattice. Then to a class $[C]$ we associate the point of $\mathfrak{H}_g$ given by $\phi(H^{1,0})$. Since $\phi$ is unique up to post-compostion by elements of $\mathrm{Sp}(\Z^{2g}, \cdot)$, the corresponding point $\phi(H^{1,0}) \in \mathfrak{H}_g$ is well-defined up to  $\mathrm{Sp}(\Z^{2g}, \cdot)$, i.e. its class in $\calA_g$ is well-defined.
+
+It’s a fact from complex geometry that deformations of $C$ as a Riemann surface are identified with $H^1(C, T_C)$. Serre duality gives $h^1(C, T_C) = h^0(C, K^{\otimes2}_C)$ and Riemann-Roch gives
+\[
+h^0(K^{\otimes2}_C) - h^1(K^{\otimes2}_C) = \deg (K^{\otimes2}_C) + 1 - g = 3g - 3.
+\]
+Again by Serre duality, $h^1(K^{\otimes2}_C) = h^0(K^{-1}_C) = 0$ if $g \geq 2$, so $h^0(K^{\otimes2}_C) = 3g - 3$ for $g \geq 2$. Thus $\dim \calM_g = 3g - 3$, whereas $\dim \calA_g = \dim \mathfrak{H}_g = \dim \Sym_{g\times g}(\CC) = {g+1\choose 2}$.
+
+We can list the values for small values of $g$:
+
+\begin{center}
+    
+\begin{tabular}{c|c|c|c|c|c|c}
+        $g$       &  0   &  1   &  2   &  3  &  4  &  5  \\ \hline
+   $\dim \calM_g$ &  0   &  1   &  3   &  6  &  9  &  12 \\ \hline
+   $\dim \calA_g$ &  0   &  1   &  3   &  6  &  10 &  15 \\
+\end{tabular}
+\end{center}
+
+\begin{theorem}[Torelli Theorem] \textup{\cite[Thm. 3.5.2]{CMSP03}} \label{Torelli}
+
+
+    The Torelli map is injective.
+\end{theorem}
+
+\subsection{Abstract Variations of Hodge Structure} \label{subsecvhs}
+
+We now want to generalize what happens in the case of \emph{geometric} variations of Hodge structure, i.e. the ones coming from a family of compact K\"{a}hler manifolds. 
+We therefore come to the abstract definition of variations of polarized Hodge structure as given in \cite{PS08}[Ch. 10].
+
+Let $B$ be a complex manifold and let $\calE_{\Z}$ be a local system, i.e. a locally constant sheaf of finitely generated free $\Z$-modules on $B$. Define $\calE := \calE_{\C} \otimes \calO_B$ where $\calE_{\C} := \calE_{\Z} \otimes \C$ . Then $\calE$ is a holomorphic vector bundle which carries the natural flat connection $\nabla\colon \calE \to \calE \otimes \Omega_B^1$ induced by $d=\partial \colon \calO_B \to \Omega_B^1$. 
+We have a correspondence (equivalence of categories) between complex local systems on $B$ and holomorphic vector bundles on $B$ equipped with a flat connection. To a local system $\calE_{\Z}$ we associate $(\calE, \nabla)$. To a holomorphic vector bundle with a flat connection $(\calV,\nabla)$ we associate $\VV \defeq \calV^\nabla= \ker \nabla $, the local system of horizontal sections. 
+
+Let $\{\calF^p\}$ be a finite decreasing filtration of $\calE$ by holomorphic sub-bundles.
+
+\begin{defn} \label{defn:VHS} The data $(\calE_\ZZ,\calF)$ of a local system on $B$ together with a finite decreasing filtration of  the holomorphic vector bundle $\calE := \calE_{\C} \otimes \calO_B$  defines a \emph{variation of Hodge structure of weight $n$} on $B$ if
+\begin{enumerate}[(i)]
+\item $\{\calF^p\}$ induces Hodge structures of weight $n$ on the fibres of $\calE$, and
+\item  the connection $\nabla \colon \calE \to \calE \otimes_{\calO_B} \Omega^1_B$ whose sheaf of horizontal sections is $\calE_\CC$ satisfies \textbf{Griffiths transversality}:
+\[ \nabla(\calF^p) \subset \calF^{p-1} \otimes \Omega^1_B
+\]
+i.e. if $s$ is a section of $\calF^p$ and $\zeta$ is a vector field of type $(1,0)$, then $\nabla_{\zeta}s$ is a section of $\calF^{p-1}$.
+\end{enumerate}
+\end{defn}
+In the case of the geometric setting $f \colon \calX \to B$ we take $\calE_\Z$ as  $\calH_{\Z}^n = \bigcup\limits_{b \in B} H^n(X_b,\Z) = R^nf_*\Z_{\calX}$, where $\Z$ is the constant sheaf of stalk $\Z$, and $R^nf_*$ is the $n$-th derived functor of the functor $f_*$ from the category of sheaves over $\calX$ to the category of sheaves over $B$.
+
+\begin{proposition} \textup{\cite{PS08}[Prop. 10.24]}
+    Let $f \colon \calX \to B$ be as above. There is a unique flat connection, the Gauss-Manin connection $\nabla\colon \calH^n \to \calH^n \otimes \Omega_B^1$ whose sheaf of locally constant  (or horizontal) sections is $\calH^n_\C = R^n f_* \C_X$. This is a locally constant sheaf whose fibre at $b \in B$ is $H^n(X_b, \C)$.
+\end{proposition}
+\begin{proof}
+We define the Gauss-Manin connection as the natural connection on $R^n f_* f^* \calO_B \simeq R^n f_* \CC_\calX \otimes_{\CC_B} \calO_B = \calH^n$ coming from $d \colon f^*\calO_B \to f^*\Omega^1_B$ where $f^*$ is the inverse image functor of sheaves and the isomorphisms can be checked at the level of stalks.
+Pulling back the exact sequence of sheaves
+\[
+0 \to \C_B \to \calO_B \xrightarrow{d} \Omega^1_B\xrightarrow{d} \Omega^2_B,
+\]
+we get the exact sequence
+\[
+0 \to f^*\C_B \to f^*\calO_B \xrightarrow{d} f^*\Omega^1_B\xrightarrow{d} f^*\Omega^2_B.
+\]
+Taking its $n$-th direct image one finds on $B$ the exact sequence
+\[
+0 \to R^n f_*f^* \C_B \to R^n f_*f^*\calO_B \xrightarrow{\nabla} R^n f_*f^*\Omega^1_B\xrightarrow{\nabla} R^n f_*f^*\Omega^2_B
+\]
+Hence $\nabla \circ \nabla=0$, i.e. $\nabla$ is a flat
+connection. Since its locally constant sections generate the sheaf $R^n f_*f^* \C_B$, this identifies $\nabla$ with the unique flat connection on $R^n f_*f^*\calO_B$ whose sheaf
+of locally constant sections is $R^n f_*f^* \C_B =  \calH^n_\C$.
+\end{proof}
+
+We next introduce the relative De Rham complex.
+\begin{defn}
+    Let $f \colon X \to Y$ be a holomorphic map between complex
+manifolds. The relative de Rham complex of $f$, denoted by $\Omega^\bullet_{X/Y}$, is the quotient of the K\"ahler de Rham complex $\Omega^\bullet_X$ by the subcomplex generated locally by forms $f^*(\eta) \wedge \omega$ where $\eta$ is a local section of $\Omega^1$ and $\omega$ a local section of $\Omega^{\bullet-1}_X$:
+\[
+\Omega^p_{X/Y} = \frac{ \Omega^p_X}{f^*\Omega^1_Y \wedge \Omega^{p-1}_X}
+\]
+If $X$ and $Y$ are smooth and $f$ is of maximal rank, then in suitable local coordinates on $X$ and $Y$ the map $f$
+has the form $(z_1, \dots ,z_n) \mapsto (z_1, \dots ,z_k)$ with $n = \dim(X)$, $k = dim(Y)$ so that $\Omega^\bullet_{X/Y}$ is locally isomorphic to the exterior algebra over $\calO_X$ on the generators $dz_{k+1},\dots ,dz_n$.
+\end{defn} 
+
+We have an alternative description of $\calH^n$ given by a proposition which we state without proof:
+\begin{proposition} \textup{\cite[Prop 2.28]{Del70}}
+    Let $f \colon X \to B$ be a smooth proper holomorphic map between complex manifolds, $n \in \NN$ and $\calE_\C$ a local system of complex vector spaces on $X$. There is a natural isomorphism
+    \[
+    \calO_B \otimes_\CC R^n f_* \calE_\CC \simeq R^n f_* ( \Omega^\bullet_{X/B } \otimes_\CC \calE_\CC )
+    \]
+\end{proposition}
+The isomorphism is the composition 
+\[
+\calO_B \otimes_\CC R^n f_* \calE_\CC \to  R^n f_* f^*\calO_B \otimes_\CC R^n f_* \calE_\CC   \cong R^n f_* ( f^*\calO_B \otimes_\CC \calE_\CC )
+\]
+of the natural map coming from the adjunction morphism $\calO_B \to  R^n f_* f^*\calO_B $ composed with the isomorphism 
+\[
+R^n f_* ( f^*\calO_B \otimes_\CC \calE_\CC ) \xrightarrow{\sim} R^n f_* ( \Omega^\bullet_{X/B } \otimes_\CC \calE_\CC ) 
+\]
+which is an isomorphism since $\Omega^\bullet_{X/B }$ is a resolution of $ f^*\calO_B$.
+
+As a corollary of the theorem we have:
+\[
+\calH^n \simeq R^n f_*(\Omega^\bullet_{X/B}).
+\]
+If $\dim B = 1$ we have an exact sequence
+\begin{align}\label{SESRelDeRham}
+0 \to f^*(\Omega^1_B) \otimes \Omega^\bullet_{X/B}[-1] \xrightarrow{\wedge} \Omega^\bullet_X \to \Omega^\bullet_{X/B} \to 0.
+\end{align}
+
+\begin{theorem}  \label{GaussManinThm}
+     The Gauss-Manin connection $\nabla$ is the connecting homomorphism
+
+     \begin{equation} \label{GaussManin}
+\xymatrix{
+   R^n f_*\Omega^\bullet_{X/B} \ar@{=}[d] \ar[r]^-{\delta} & R^{n+1} f_* (f^*(\Omega^1_B) \otimes_{\calO_X} \Omega^\bullet_{X/B}[-1]) \ar@{=}[d]    \\ 
+   R^n f_*\Omega^\bullet_{X/B} \ar[r]_-{\nabla} & \Omega^1_B \otimes_{\calO_B} R^n f_* \Omega^\bullet_{X/B} 
+}
+\end{equation}
+in the long exact sequence obtained by applying $Rf_*$ to the exact sequence (\ref{SESRelDeRham}).
+\end{theorem}
+\begin{proof}
+    See \cite[Thm. 2]{KO68}.
+\end{proof}
+The isomorphism on the right comes from the fact that  $\Omega^1_B$ is locally free and the differential in the complex $f^*(\Omega^1_B) \otimes_{\calO_X} \Omega^\bullet_{X/B}[-1]$ is $f^*\calO_B$-linear.
+
+We now define the Hodge filtration on $R^n f_*\Omega^\bullet_{X/B}$; it is obtained as follows. The relative de Rham complex inherits the trivial filtration $\sigma$ from the absolute de Rham complex.
+\[
+\sigma^{\geq p} \Omega^\bullet_{X/B} \defeq \{ 0 \to \cdots \to 0 \to \Omega^p_{X/B} \to \Omega^{p+1}_{X/B} \to \cdots  \}
+\]
+
+We define
+\begin{equation}
+\calF^p \calH^n = \calF^p R^n f_* \Omega^\bullet_{X/B} := im (R^n f_* \sigma^{\geq p} \Omega^\bullet_{X/B} \to R^n f_* \Omega^\bullet_{X/B}) \label{HdgFiltr}
+\end{equation}
+
+We now can prove :
+\begin{cor}[Griffiths’ transversality theorem] \textup{\cite[Cor.10.31]{PS08}}
+     The Gauss-Manin connection has the property
+     \[
+     \nabla(\calF^p\calH^n) \subseteq \Omega^1_B \otimes \calF^{p-1}\calH^n.
+     \]
+\end{cor}
+\begin{proof}
+    This follows from the filtered version of (\ref{SESRelDeRham})
+    \[
+0 \to f^*\Omega^1_B \otimes \sigma^{\geq p-1}\Omega^\bullet_{X/B}[-1] \to \sigma^{\geq p} \Omega^\bullet_X \to \sigma^{\geq p}\Omega^\bullet_{X/B} \to 0
+    \]
+after applying $R f_*$:
+\begin{equation*}
+\xymatrix{
+   \calF^p R^n f_*(\Omega^\bullet_{X/B}) \ar@{=}[d]  \ar[r]^-{\delta} & \calF^{p-1} R^n f_*(f^*\Omega^1_B \otimes \Omega^\bullet_{X/B}) \ar@{=}[d]  \\ 
+   \calF^p \calH^n  \ar[r]^-{\nabla} &  \Omega^1_B \otimes \calF^{p-1} \calH^n
+}
+\end{equation*}
+Indeed $\delta$ goes from $R^n f_*( \sigma^{\geq p}\Omega^\bullet_{X/B})$ to $R^{n+1} f_* ( f^*\Omega^1_B \otimes \sigma^{\geq p-1}\Omega^\bullet_{X/B}[-1]) \simeq \Omega^1_B \otimes  R^n f_* ( \sigma^{\geq p-1}\Omega^\bullet_{X/B}) $. Hence taking the images in $R^n f_*( \Omega^\bullet_{X/B})$, we see that $\delta$, i.e. the connection $\nabla$, takes $\calF^p\calH^n$ to $\Omega^1_B \otimes  R^n f_* ( \sigma^{\geq p-1}\Omega^\bullet_{X/B}) = \Omega^1_B \otimes \calF^{p-1}\calH^n $.
+\end{proof}
+Hence we found:
+\begin{cor}
+     Let $f \colon X \to B$ be a proper and smooth holomorphic map between complex manifolds, let $n \in \NN$. Suppose that X a K\"ahler manifold. Then, with the Hodge filtration (\ref{HdgFiltr}), the local system $\calH^n_\Z = R^n f_* \Z_X$ underlies a variation of Hodge structure.
+\end{cor}
+
+ 
+
+
+
+\ifSubfilesClassLoaded{
+}{} % la seconda {} è per else
+
+\end{document}
