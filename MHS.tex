@@ -1,0 +1,1207 @@
+\documentclass[../main.tex]{subfiles}
+
+
+\title{Capitolo 4 - Mixed Hodge Structures}
+\author{Edoardo Manini}
+\date{\today}
+
+\begin{document}
+\ifSubfilesClassLoaded{
+\maketitle
+\tableofcontents
+}{}
+
+
+Mixed Hodge Structures were first introduced to deal with what happens to the Hodge structures on the cohomology of a K\"{a}hler manifold as that manifold degenerates to a singular variety. 
+They have become an essential tool to study singular varieties.
+For a singular variety the cohomology groups cannot be expected to have a classical Hodge decomposition since for example $H^1$ can have odd rank.
+This is one reason to introduce the new generalized concept of mixed Hodge structures. 
+
+We fix the following set up. Let $f\colon \calX\ra\Delta$ be a proper holomorphic map which is surjective to the unit disk $\Delta \subset \CC$, that is smooth away from the fibre over zero. The family acquires a singularity and one wants to see how the Hodge structure near the singular fibre degenerates. Assume that $X_b$, the fibre over $b\in\Delta$, is K\"ahler for each $b\neq 0$. Then for any $n$, the cohomology $H^n(X_b,\CC)$ carries a natural pure Hodge structure of weight $n$. This gives rise to a variation of Hodge structures, as discussed in the previous section.
+
+Griffiths conjectured in \cite{Gr70} that the monodromy action around $0 \in \Delta$ defines a filtration $W$, called a \emph{weight filtration}, on the cohomology of a nearby fibre that together with a Hodge filtration $F_\llim$ defines a so-called \emph{mixed Hodge structure}, i.e. $F_\llim$ induces a pure Hodge structure of weight $k+n$ on the $k$-th $W$-graded piece $\Gr_k^W$ .
+
+In 1971, Deligne \cite{Del71} proved that, for every $n$, the $n$-th cohomology of a smooth variety $U$ over $\CC$ carries a natural and functorial mixed Hodge structure.
+This is the starting point and the most important theorem of mixed Hodge theory.
+In 1973 Schmid \cite{Sc73} considered abstract variations of Hodge structure over the punctured disk and defined the filtration $F_\llim$ predicted by Griffiths.
+
+In 1976, Steenbrink \cite{St75} worked on the case where the central fibre $X_0$ is a semistable normal crossing divisor and the map $f$ is projective. 
+
+\subsection{Mixed Hodge Structures on Smooth Varieties}\label{mhssmooth}
+
+With the goal of studying degenerations of Hodge structures, we first need to introduce some definitions .
+
+\label{sec:2}
+\begin{defn}
+\begin{enumerate}
+\item 
+A \emph{mixed Hodge structure} $(H_\ZZ,W,F)$ consists of a free f.g. $\ZZ$-mod\-ule $H_\ZZ$ together with a finite increasing filtration $W$
+\[{0}\subset\cdots\subset W_0\subset W_1\subset W_2\subset \cdots\subset H_\QQ\] 
+on $H_\QQ := H_\ZZ\otimes_\ZZ\QQ$ and a finite decreasing filtration $F$
+\[H_{\CC} =F^0\supset F^{1}\supset F^2\supset\cdots\supset{0}\] 
+on $H_{\CC} :=H_\ZZ\otimes_\ZZ\CC$ such that the induced filtration by $F$  on the graded piece $\Gr^W_k H_\CC=W_{k}H_\CC/W_{k-1}H_\CC$ defines a (pure) Hodge structure of weight $k$. Here $F^p\Gr^W_k H_\CC$ is the image of $F^p\cap W_k H_\CC$ in $\Gr^W_k H_\CC$,
+\[
+F^p\Gr^W_k H_\CC = \frac{F^p\cap W_k H_\CC + W_{k-1} H_\CC}{W_{k-1} H_\CC},
+\]
+$F^\bullet$ is called the \emph{Hodge filtration} and $W_\bullet$ the \emph{weight filtration}. The notation for a MHS maybe sometimes abbreviated to a pair of filtrations $(W_\bullet,F^\bullet)$
+\item The mixed Hodge structure on $H$ defines a class in the Grothendieck group of pure Hodge structures
+\begin{align}
+    [H] := \sum_{k \in \Z} \Gr^W_k \in K_0(\mathfrak{hs}).\label{Groth}
+\end{align}\item The \emph{Hodge numbers} of a mixed Hodge structure $(H_\ZZ,W,F)$ are defined to be
+\[h^{p,q}(H)=\dim_\CC \Gr^p_F\Gr^W_{p+q}H_\CC\]
+\item These are the coefficients of the \emph{Hodge-Euler polynomial}
+\[
+e_{Hdg}(H) := \sum_{p,q \in \Z} h^{p,q}(H)u^pv^q \in \Z[u, v, u^{-1},v^{-1}]. 
+\]
+\item We say that, for $k \in \ZZ$, \emph{weight $k$ occurs} in a mixed Hodge structure  $(H_\ZZ,W,F)$ if $\Gr^W_k \neq 0$. The mixed Hodge structure is then \emph{pure of weight $k$} if $k$ is the only weight which occurs.
+\end{enumerate}
+\end{defn}
+
+The notion of a Hodge structure of pure weight $k$ can be viewed as a special case: as $F$-filtration, one takes the Hodge filtration and $W_k$ is set equal to the full vector space, and $W_{k-1}$ is set equal to the zero subspace.
+
+\begin{es}
+Let $H = (H_\ZZ,W,F)$ be a mixed Hodge structure. We define
+\begin{align*}
+H(m)_{\ZZ} &\defeq (2 \pi i)^{2m} \cdot H_\ZZ \\
+W_k(H(m)) &\defeq W_{k+2m} H \\
+F^p (H(m)) &\defeq F^{p+m} H.
+\end{align*}
+Then $H(m)$ is also a mixed Hodge structure, the $m$-th Tate twist of $H$.
+\end{es}
+If $H_\CC$ and $H_\CC^{\prime}$ are vector spaces with mixed Hodge structures, a linear transformation $T \colon H_\CC \to H_\CC^{\prime}$ is said to be a morphism of mixed Hodge structures of type $(n, n)$, with $n \in \Z$, if it preserves the rational structure, and if 
+\[
+T(F^p) \subset F'^{p+n} , \quad   T(W_l) \subset W'_{l+2n}
+\] 
+for all indices $p$ and $l$. A morphism of type $(0, 0)$ will simply be called a morphism. 
+Since a morphism $f \colon H \to H^\prime$ of mixed Hodge structures is compatible with the two filtrations $W$ and $F$, it induces for all $m \in \Z$ morphisms $\Gr^W_m (f) \colon \Gr_m^W H \to \Gr^W_m H^\prime$ of Hodge structures.
+
+We would like to have strictness of morphisms of MHS with respect to both filtrations to have that injective morphisms descend to injective morphisms on graded pieces and short exact sequences of MHS give short exact sequences of the graded pieces.
+
+Although we may introduce the $(p,q)$-component of the pure Hodge structure $\Gr^W_{p+q} H_\CC$ as 
+\[
+H^{p,q} \defeq \Gr^p_F \Gr^W_{p+q} H_\CC
+\]
+so that $H_\CC \simeq \bigoplus H^{p,q}$ as complex vector spaces, these $H^{p,q}$ are only subquotients and not subspaces of $H$. To prove strictness we want a direct sum decomposition of \emph{subspaces} $H_\CC = \bigoplus J^{p,q}$ of $H_\CC$, called splitting, such that 
+\begin{align*}
+    W_k H_\CC &= \bigoplus_{p+q \leq k} J^{p,q} \\
+    F^p H_\CC &= \bigoplus_{i \geq p} J^{i,j}
+\end{align*}
+and that $J^{p,q} = \overline{J^{q,p}}$ for all $p,q \in \Z$.
+Then $\Gr^W_k = \bigoplus_{p+q=k} J^{p,q} $ is a Hodge decomposition of a weight $k$ Hodge structure. Note that we only need $J^{p,q} = \overline{J^{q,p}}$ modulo $W_{k-1} H_\CC$ where $k=p+q$. We call the bigrading $J^{p,q}$ a \emph{weak splitting of the mixed Hodge structure} $(H,W,F)$.
+
+The existence of such splitting was given by Deligne:
+\begin{lemma} \textup{ \cite[Lemme 1.2.10]{Del71}}
+    The bigrading of $H_\CC$ given by
+    \[
+    I^{p,q} \defeq F^p \cap W_{p+q} \cap \left( \overline{F^q} \cap W_{p+q} + \sum_{j \geq 2} \overline{F^{q-j+1}} \cap W_{p+q-j} \right)
+    \]
+    defines a weak splitting of the mixed Hodge structure.
+\end{lemma}
+
+
+
+
+A consequence of the existence of the Deligne splitting is that any morphism $f \colon (H,W,F) \to (H^\prime,W^\prime,F^\prime)$ of mixed Hodge structures is strict, i.e., any element of $(F^\prime)^p$ in the image of $f$ comes from $F^p$ and similarly for the weight filtration.
+The following assertion is an immediate consequence of this strictness.
+\begin{cor} \label{SummGrses}
+     Let
+     \[
+H^\prime \lra H \lra H^{\prime\prime}
+     \]
+be an exact sequence of mixed Hodge structures. Then for all $k,p$ the sequences
+\begin{align*}
+\Gr^W_k H^\prime_\QQ \lra &\Gr^W_k H_\QQ \lra \Gr^W_k H^{\prime\prime}_\QQ \\
+\Gr^p_F H^\prime_\C \lra &\Gr^p_F H_\C \lra \Gr^p_F H^{\prime\prime}_\C \\
+\Gr^p_F \Gr^W_k H^\prime_\C \lra & \Gr^p_F \Gr^W_k H_\C \lra \Gr^p_F \Gr^W_k H^{\prime\prime}_\C
+\end{align*}
+are also exact. If, moreover, the exact sequence extends to an exact sequence
+\[
+0 \lra H^\prime \lra H \lra H^{\prime\prime} \lra 0,
+     \]
+we have
+\begin{align} \label{sumses}
+[H] = [H^\prime] + [H^{\prime\prime}] \quad \text{ in } K_0(\mathfrak{hs}).
+\end{align}
+\end{cor} 
+
+One of the simplest examples of a mixed Hodge structure is induced by the Hodge filtration on the cohomology of a compact K\"{a}hler manifold.
+
+\begin{es} 
+\label{example-MHS1}
+Let $X$ be a compact K\"ahler manifold and set 
+\begin{eqnarray*}
+H_\ZZ &=& \bigoplus_i H^i(X,\ZZ)/\mathrm{torsion},\\
+W_kH_\QQ &=& \bigoplus_{i\le k} H^i(X,\QQ),\\
+F^pH_\CC &=& \bigoplus_{i} F^pH^i(X,\CC),
+\end{eqnarray*}
+where $F^pH^i(X,\CC) = \bigoplus_{i\geq p} H^{i,n-i}(X) $ denotes the usual Hodge filtration of $H^i(X,\CC)$. Then $(H_\ZZ,W,F)$ is a mixed Hodge structure. Indeed $\Gr^W_k H_\CC \simeq H^k(X,\CC)$ which has a Hodge structure of weight k given by the Hodge filtration $F$.
+\end{es}
+
+The first main result about mixed Hodge structures is the following, originally due to Deligne \cite{Del71}.
+
+\begin{theorem}\textup{\cite{Del71}}
+\label{deligne-on-smooth}
+Let $U$ be a smooth \textup{(}complex algebraic\textup{)}  variety. Then $H_\ZZ=H^k(U,\ZZ)$ carries a natural mixed Hodge structure, which is functorial with respect to maps of algebraic manifolds $U \to V$.
+\end{theorem}
+
+Deligne then later extended the proof to work for arbitrary varieties. 
+
+There are some restrictions on the Hodge numbers of Deligne's MHS given by the following 
+\begin{theorem}\textup{\cite[Thm. 5.39]{PS08}}
+\label{deligne-numbers}
+Let $U$ be a complex algebraic variety of dim $n$. Suppose a Hodge number $h^{p,q}$ of $H^k(U)$ is non-zero. Then
+\begin{enumerate}
+\item $0 \le p,q \le k$
+\item if $k > n $ then $k-n \le p,q \le n$ 
+\item if $U$ is smooth then $p+q \geq k$
+\item if $U$ is compact then $p+q \le k$
+
+\end{enumerate}
+
+\end{theorem}
+
+
+We now give the idea of the construction.
+
+Let $U$ be a smooth variety. By a theorem of Nagata (Nagata Embedding Theorem \cite{Del10}), $U$ is Zariski open in some compact algebraic variety $X$, which by Hironaka's resolution of
+singularities \cite{Wlo05}, one can assume to be smooth and for which $D = X \setminus U$ locally looks like the crossing of coordinate hyperplanes. It is called a normal crossing divisor. This means that every point $p \in D$ there exist an integer $1 \leq k \leq n$ and an open neighborhood $V$ bi-holomorphic to an open ball $B$ in $\CC^n$ centered at $0$ such that
+\[
+D \cap V \simeq \left\{ (z_1,\dots , z_n) \in B | z_1 \cdots z_k = 0 \right\}.
+\]
+If the irreducible components $D_k$ of $D$ are smooth, we say that $D$ has simple or strict normal
+crossings and that $X$ is a \emph{good compactification} of $U$. Take $X\supseteq U$ a good compactification. Let
+\[j \colon U = X \setminus D \hra X
+\]and let $\Omega^\bullet_X(\log D) \subseteq j_*\Omega^\bullet(U)$ denote the sheaf of differential forms on $X$ with at most logarithmic poles along $D$, i.e. the meromorphic differential forms $\omega$ on X
+such that both $\omega$ and $d\omega$ have at most a first-order pole along D. $\Omega^r_X(\log D)$ is a locally free sheaf generated by forms of the shape
+$\frac{dz_1}{z_1}\wedge\cdots\wedge\frac{dz_j}{z_j}\wedge \alpha$, where $z_i$ is a local equation of a component of $D$, $j\le r$ and $\alpha\in\Omega^{r-i}_X$. More rigorously, if $p \in D$ and $V \subset X$ is an open neighborhood with coordinates $(z_1,\dots,z_n)$ in which $D \cap V$ has equation $z_1 \cdot\cdot\cdot z_k = 0$, we have
+\[
+ \Omega_X^1(\log D)_p=\mathcal{O}_{X, p} \frac{d z_1}{z_1} \oplus \cdots \mathcal{O}_{X, p} \frac{d z_k}{z_k} \oplus \mathcal{O}_{X, p} d z_{k+1} \oplus \cdots \oplus \mathcal{O}_{X, p} d z_n \]
+\[
+ \Omega_X^r(\log D)_p=\bigwedge^r \Omega_X^1(\log D)_p.
+\]
+
+Then $A^\bullet=\Omega_X^\bullet(\log D)$ is a complex of sheaves under the de Rham differential. Furthermore, one can show that
+\begin{theorem} \textup{\cite[Thm. 4.2]{PS08}} \label{DelMainThm}
+\begin{equation} \label{Deligne}
+    \HH^n(X,\Omega_X^\bullet(\log D)) = H^n(U,\CC).
+\end{equation}
+
+There are two filtrations on $\Omega^\bullet_X(\log D)$, given by
+\begin{eqnarray*}
+W_m\Omega^i_X(\log D) &=& \left\{\begin{array}{ll} \Omega^i_X(\log D)&\hbox{if }i\le m\\ \Omega_X^{i-m}\wedge\Omega^m_X(\log D)\quad&\hbox{if }0\le m\le i\\0&\hbox{if }m<0\end{array}\right.,\\
+F^p\Omega^i_X(\log D) &=& \left\{\begin{array}{ll} \Omega^i_X(\log D)\quad&\hbox{if }p\le i\\ 0&\hbox{otherwise.}\end{array}\right.
+\end{eqnarray*}
+which induce filtrations in cohomology:
+\begin{align*}
+    W_mH^k(U,\CC) &= \im \left( \HH^k(X,W_{m-k}\Omega^\bullet_X(\log D) \to H^k(U,\CC) \right)  \\
+    F^pH^k(U,\CC) &= \im \left( \HH^k(X,F^p\Omega^\bullet_X(\log D) \to H^k(U,\CC) \right)
+\end{align*}
+which put a mixed Hodge structure on $H^k(U)$.
+\end{theorem} 
+This is the main result of \cite{Del71}. 
+
+\begin{proof}{(idea of)}
+    
+The proof of \eqref{Deligne} is done by showing that the inclusion of complexes
+\[
+\Omega^\bullet_X( \log D) \to j_*\Omega^\bullet_U
+\]
+is a quasi-isomorphism.
+The steps in the proof of the remaining part are
+\begin{enumerate}
+    \item Prove that there is a chain of filtered quasi-isomorphisms relating $(Rj_*\CC_U,\tau)$ and $(\Omega_X^\bullet( \log D),W)$ where $\tau$ is the canonical filtration.
+    \item Show that the hypercohomology spectral sequence associated to the filtration $W$ and converging to $\HH^\bullet(X,\Omega^\bullet_X( \log D) ) = H^\bullet(U,\CC)$ has on the groups of its first page $E^{p,q}_1$ a pure Hodge structure induced by $F$ and that the differential $d_1$ is a morphism of pure Hodge structures.
+    \item Deduce that $E_2$ is equipped with a mixed Hodge structure and for every $r \geq 2$ the differentials $d_r$ vanishes so that
+    \[
+ \Gr^W_m H^k(U) \simeq E^{-m,k+m}_2
+    \]
+is equipped with a natural pure Hodge structure induced by $F$ of weight $k + m$.
+\end{enumerate}
+
+\end{proof}
+
+In the next section we'll see how this idea can be extrapolated to give a systematic way to produce MHS.
+
+
+
+\begin{es} 
+\label{example-MHS3}
+As a more concrete version of this construction, let us compute the mixed Hodge structure of $U = \PP^1\setminus\{p_1,\ldots,p_k\}$, with $p_i$ distinct points and $k\ge 1$. The bifiltered complex of sheaves $L^\bullet = \Omega_{\Proj^1}^\bullet(\log \{p_1,\ldots,p_k\})$ is given by
+\[\shO_{\PP^1}\stackrel{d}{\lra}\Omega^1_{\PP^1}(\log\{p_1,\ldots,p_k\}).\]
+We have $H^i(\PP^1,\calO_{\PP^1})= 0$  $\forall i > 0$ because $H^1(\PP^1,\calO_{\PP^1})=H^{1,0}(\PP^1)=0$. 
+
+Recall that for a normal crossing divisor $D \subset X$, we always have the short exact sequence of sheaves:
+\[
+0 \to \Omega^1_X \to \Omega^1_X(\log D) \to \bigoplus_{j=1}^k i_{j_*}(\calO_{D_j}) \to 0
+\]
+where $i_{j} \colon D_j \to D$ is the inclusion of an irreducible component of $D$.
+
+
+For  $\Omega^1_{\PP^1}(\log\{p_1,\ldots,p_k\})$ this short exact sequence becomes
+\[
+0 \to \Omega^1_{\PP^1} \to \Omega^1_{\PP^1}(\log\{p_1,\ldots,p_k\}) \to \bigoplus_{j=1}^k i_{j_*}(\calO_{p_j}) \to 0
+\]
+where $i_{j_*} \colon \{p_j\} \hra \PP^1$ is the inclusion.
+The associated long exact sequence in cohomology is
+\begin{tikzpicture}[descr/.style={fill=white,inner sep=1.5pt}]
+        \matrix (m) [
+            matrix of math nodes,
+            row sep=1em,
+            column sep=2.5em,
+            text height=1.5ex, text depth=0.25ex
+        ]
+        { 0 & H^0(\PP^1,\Omega^1_{\PP^1}) & H^0(\PP^1,\Omega^1_{\PP^1}(\log\{p_1,\ldots,p_k\}) & H^0(\PP^1,\bigoplus_{j=1}^k i_{j_*}(\calO_{p_j}) ) \\
+            & H^1(\PP^1,\Omega^1_{\PP^1}) & H^1(\PP^1,\Omega^1_{\PP^1}(\log\{p_1,\ldots,p_k\}) & H^1(\PP^1,\bigoplus_{j=1}^k i_{j_*}(\calO_{p_j}) ) \\
+        };
+
+        \path[overlay,->, font=\scriptsize,>=latex]
+        (m-1-1) edge (m-1-2)
+        (m-1-2) edge (m-1-3)
+        (m-1-3) edge node[midway,above] () {$\oplus res_j$} (m-1-4)
+        (m-1-4) edge[out=355,in=175] node[descr,yshift=0.3ex] {$\delta$} (m-2-2)
+        (m-2-2) edge (m-2-3)
+        (m-2-3) edge (m-2-4);
+\end{tikzpicture}
+
+which becomes 
+\[
+0 \lra H^0(\PP^1,\Omega^1_{\PP^1}(\log\{p_1,\ldots,p_k\}) \xrightarrow{\text{res}} \CC^k
+    \lra \CC \lra H^1(\PP^1,\Omega^1_{\PP^1}(\log\{p_1,\ldots,p_k\}) \lra 0
+\]
+and because of the residue theorem, $\Sigma_{j=1}^kRes_{p_j}\omega =0$, the image of res coincides with the hyperplane $\{\Sigma_{j=1}^k z_j = 0 \} \subseteq \CC^k$. Hence $\im res \cong \CC^{k-1} \cong \ker \delta$. For the exactness of the sequence we get that the connecting homomorphism is surjective so $H^0(\PP^1,\Omega^1_{\PP^1}(\log\{p_1,\ldots,p_k\}) \cong \CC^{k-1}$ and $H^1(\PP^1,\Omega^1_{\PP^1}(\log\{p_1,\ldots,p_k\}) = 0$.
+This could have also be seen by noticing that $\Omega^1_{\PP^1} = \calO(-2)$ and so $\Omega^1_{\PP^1}(\log\{p_1,\ldots,p_k\}) = \calO(-2+k)$.
+This means that also $\Omega^1_{\PP^1}(\log\{p_1,\ldots,p_k\})$ is acyclic.
+As both terms have no higher cohomology, we can just take the total complex $I^\bullet$ of the resolution to coincide with $L^\bullet$.
+
+Taking global sections, the complex becomes
+\[\CC\cong\Gamma(\PP^1,\shO_{\PP^1})\stackrel{d}{\lra}\Gamma(\PP^1,\Omega^1_{\PP^1}(\log\{p_1,\ldots,p_k\}))
+ \cong \C^{k-1}\]
+and the differential becomes trivial.
+Thanks to Thm. \ref{DelMainThm}  we have computed 
+\begin{eqnarray*}
+H^n(U,\CC) = \HH^n(\Proj^1,L^\bullet)
+=  \left\{\begin{array}{ll} \CC &\quad n=0\\ 
+\CC^{k-1} &\quad n=1\\
+0&\quad\hbox{otherwise.}\end{array}\right.\\
+\end{eqnarray*}
+To now calculate the Hodge numbers let's look at the filtration $W$ on $L^\bullet$:
+\[
+\begin{tikzcd} % [row sep=small]
+W_{1}(L^\bullet) : & \calO_{\PP^1}\arrow[r] & \Omega^1_{\PP^1}(\log\{p_1,\ldots,p_k\})\\
+W_{0}(L^\bullet) : & \calO_{\PP^1}\arrow[r] \arrow[u, phantom, sloped, "\subseteq"] & \Omega^1_{\PP^1} \arrow[u, phantom, sloped, "\subset"]\\
+W_{-1}(L^\bullet) : & 0\arrow[r] \arrow[u, phantom, sloped, "\subset"] & 0 \arrow[u, phantom, sloped, "\subset"]\\
+\end{tikzcd}
+\]
+
+
+
+which induces the filtrations in hypercohomology:
+\begin{center}
+\begin{minipage}[c][0.2\textheight]{0.45\textwidth}
+\begin{tikzcd} [row sep=small]
+ W_0(\HH^0(\PP^1,L^\bullet)) : & \CC \\
+W_{-1}(\HH^0(\PP^1,L^\bullet)) : & 0 \arrow[u, phantom, sloped, "\subset"] \\
+\end{tikzcd}
+\end{minipage}% 
+\begin{minipage}[c][0.2\textheight]{0.45\textwidth}
+\begin{tikzcd} [row sep=small]
+ W_2(\HH^1(\PP^1,L^\bullet)) : & \CC^{k-1} \\
+W_{1}(\HH^1(\PP^1,L^\bullet)) : & 0 \arrow[u, phantom, sloped, "\subset"] 
+\end{tikzcd}
+\end{minipage}
+\end{center}
+from which we deduce that 
+\[
+\Gr_0^W \HH^0(\Proj^1,L^\bullet) = \C \quad \text{ and }  \quad \Gr_2^W \HH^1(\Proj^1,L^\bullet) = \C^{k-1}.
+\]
+The filtration $F$ on $L^\bullet$ is given by:
+
+
+
+\[
+\begin{tikzcd} % [row sep=small]
+F^0(L^\bullet) : & \calO_{\PP^1}\arrow[r] & \Omega^1_{\PP^1}(\log\{p_1,\ldots,p_k\})\\
+F^1(L^\bullet) : & 0\arrow[r] \arrow[u, phantom, sloped, "\subset"] & \Omega^1_{\PP^1}(\log\{p_1,\ldots,p_k\}) \arrow[u, phantom, sloped, "\subseteq"]\\
+F^2(L^\bullet) : & 0\arrow[r] \arrow[u, phantom, sloped, "\subset"] & 0 \arrow[u, phantom, sloped, "\subset"]
+\end{tikzcd}
+\]
+
+which induces the filtrations in hypercohomology:
+\begin{center}
+\begin{minipage}[c][0.2\textheight]{0.45\textwidth}
+\begin{tikzcd} [row sep=small]
+F^0(\HH^0(\PP^1,L^\bullet)) : & \CC \\
+F^1(\HH^0(\PP^1,L^\bullet)) : & 0 \arrow[u, phantom, sloped, "\subset"] 
+\end{tikzcd}
+\end{minipage}% 
+\begin{minipage}[c][0.2\textheight]{0.45\textwidth}
+\begin{tikzcd} [row sep=small]
+F^0(\HH^1(\PP^1,L^\bullet)) : & \CC^{k-1} \\
+F^1(\HH^1(\PP^1,L^\bullet)) : & \CC^{k-1} \arrow[u, phantom, sloped, "\subset"] \\
+F^2(\HH^1(\PP^1,L^\bullet)) : & 0 \arrow[u, phantom, sloped, "\subset"] 
+\end{tikzcd}
+\end{minipage}
+\end{center}
+
+from which we see that
+\[
+\Gr^0_F \HH^0(\Proj^1,L^\bullet) = \C \quad \text{ and } \quad \Gr^1_F \HH^1(\Proj^1,L^\bullet) = \C^{k-1}.
+\]
+We deduce:
+\begin{eqnarray*}
+h^{p,q}H^1(U,\CC) =& \dim_\CC \Gr_F^p\Gr^W_{p+q}\HH^1(\Proj^1,L^\bullet) &= \left\{\begin{array}{ll} k-1 &\quad p=q=1\\ 0&\quad\hbox{otherwise,}\end{array}\right.\\
+h^{p,q}H^0(U,\CC) =& \dim_\CC \Gr_F^p\Gr^W_{p+q}\HH^0(\Proj^1,L^\bullet) &= \left\{\begin{array}{ll} 1 &\quad p=q=0\\ 0&\quad\hbox{otherwise.}\end{array}\right.
+\end{eqnarray*}
+We see that here $H^1(U,\CC)$ is concentrated in weight two and not in weight one as happens in the compact K\"{a}hler case (es. \ref{example-MHS1}). One can say that the Hodge structure is again pure, just in another weight. 
+
+There are a variety of weights that in general might contribute to the cohomology $H^1(U,\CC)$, as we will see in Ex. \ref{puncturedellipticex}. Yet, Thm. \ref{deligne-numbers}
+tells us that the only weights that can contribute to the mixed Hodge structure of $H^n(U,\CC)$ for a smooth variety $U$ are $\geq n$. 
+In order to get contributions from weights $\leq n$, i.e. below the cohomology degree, we have to consider mixed Hodge structures of singular varieties as we will do in a following section.
+\end{es}
+
+
+
+\subsection{Mixed Hodge Structures via Mixed Hodge Complexes} \label{sect:mhsbc}
+
+\epigraph{Having thus refreshed ourselves in the oasis of a proof, we now turn again into the desert of definitions.}{\textit{Th. Brocker \& K. Janich, \\ Introduction to Differential Topology}}
+ 
+Before introducing mixed Hodge complexes, we need to define the notion of a Hodge complex introduced by Deligne \cite{Del74}.
+This requires first some definitions from homological algebra.
+If $R$ is a Noetherian ring, we will denote by $\D^+(R)$ the derived category of the abelian category of modules over the ring $R$ whose objects are bounded below complexes of $R$-modules. If $X$ is a topological space, we will denote by $\D^+(X,R)$ the derived category of the abelian category of sheaves of $R$-modules on $X$ whose objects are bounded below complexes of sheaves.
+Recall that if $A$ is an abelian category, the morphisms between two complexes $K^\bullet$ and $L^\bullet$ in the derived category $D^+(A)$ are (equivalence classes of) left fractions $s\backslash f$, called roofs:
+\[
+\begin{tikzcd}
+    & \bullet  &   \\
+  K^\bullet \arrow{ru}{f} &  &  L^\bullet \arrow{lu}{s}[swap]{\underset{\sim}{\qis}} 
+\end{tikzcd}
+\]
+where $f$ is a homotopy class of a morphism of complexes and $s$ is the homotopy class of a quasi-isomorphism of complexes. The equivalence relation is given in the following way. If $s_1\backslash f_1$ and  $s_2\backslash f_2$ are two roofs, they are equivalent if there exists another roof $s_3\backslash f_3$ such that the following diagram commutes:
+\[
+\begin{tikzcd}
+     & \bullet \arrow{d}  &   \\
+     K^\bullet \arrow{ru}{f_1} \arrow{rd}[swap]{f_2} \arrow{r}{f_3} & \bullet  & L^\bullet \arrow{lu}{\sim}[swap]{{s_1}}  \arrow{l}{s_3}[swap]{{\sim}{}}   \arrow{ld}{s_2}[swap]{{\sim}}  \\
+      & \bullet \arrow{u} &   \\
+\end{tikzcd}
+\]
+Notice that a chain like the following:
+\begin{equation} \label{pseudomor}
+\begin{tikzcd} 
+    & K_1^\bullet  &  & K_3^\bullet & \cdots & K_{n+1}^\bullet & \\
+  K^\bullet \arrow{ru}{f} &  & K_2^\bullet \arrow{lu}{\sim} \arrow{ru}{\sim} &  &  \cdots \arrow{ru}{\sim} \arrow{lu}{\sim} &  & L^\bullet 
+ \ar[equal]{lu} 
+\end{tikzcd}
+\end{equation}
+is always in the class of a single roof, namely their composition, since the existence of the composition of two roofs is always guaranteed by the fact that the homotopy class of quasi-isomorphisms forms a multiplicative system in the additive category $A$. We refer to \cite{Iver86}[Ch. XI] for an introduction on derived categories.
+
+We call chains like \eqref{pseudomor} \emph{pseudo-morphisms} and denote them by 
+\[
+f \colon K^\bullet \xdasharrow{\phantom{somes}} L^\bullet 
+\]
+If also $f$ is a quasi-isomorphism we speak of a \emph{pseudo-isomorphism}, which is therefore an isomorphism in the derived category. We denote them by 
+\[
+f \colon K^\bullet \xdasharrow{ \phantom{s} $\sim$ \phantom{s} } L^\bullet .
+\]
+
+The following definitions were given by Deligne and are essential to the construction of (pure and mixed) Hodge structures like the ones on the cohomology of varieties.
+
+First I will try to motivate them. The idea comes from the compact K\"{a}hler case. We have seen that if $X$ is a compact K\"{a}hler manifold, the associated (complex) De Rham complex $(\calA_X^\bullet(X),d)$ has f.g. cohomology groups $H^k(X,\CC)$ and their Hodge filtrations $F$ determine (canonical) Hodge structures of weight $k$ on the integral cohomology $H^k(X,\ZZ)$. 
+Moreover $H^k(X,\ZZ) \otimes \CC \simeq H^k(X,\CC)$ by the De Rham isomorphism and the isomorphism comes from an inclusion of complexes of sheaves $\ZZ_X \hra \Omega^\bullet_X$ of the constant sheaf in the holomorphic De Rham complex of sheaves. The holomorphic Poincarè Lemma says that 
+\[
+0 \to \CC_X \to \calO_X \xrightarrow{\partial} \Omega^1_X \xrightarrow{\partial} \Omega^2_X \xrightarrow{\partial} \cdots
+\]
+is an exact complex, i.e. locally a closed holomorphic form is exact, i.e. the inclusion above becomes a quasi-isomorphism $\CC_X \to \Omega^\bullet_X$ after tensoring with $\CC$ (considering $\CC_X$ as a complex supported in degree zero). Therefore it induces an isomorphism in hypercohomology $\HH^n(X,\CC_X) \xrightarrow{\sim} \HH^n(X,\Omega^\bullet_X)$.
+
+In other words, the hypercohomology $\HH^n(X,\Omega^\bullet_X)$ of the holomorphic De Rham complex $\Omega^\bullet_X$ gives us the complex vector space $H^n(X,\CC)$ and at the same time, the Hodge filtration on $H^n(X,\CC)$ comes from a filtration at the level of the complex of sheaves. It is indeed just the trivial (b\^{e}te) filtration
+\[
+\sigma^{\geq p} \Omega^\bullet_X = \{ 0 \to \cdots \to 0 \to\Omega^p \to \Omega^{p+1} \to \cdots \to \Omega^n_X \} \quad (n= \dim X).
+\]
+It descends to an induced filtration in hypercohomology
+\[
+F^pH^n_{dR}(X,\CC) \defeq \im \left( \HH^n (X,\sigma^{\geq p} \Omega^\bullet) \to \HH^n(X,\Omega^\bullet) \right),
+\]
+and the abutment of the Frolicher spectral sequence at the first page tells us that the induced filtration coincides with the usual Hodge filtration.
+
+This theory hints an algebraic approach to the Hodge decomposition. This is precisely what the theory of Hodge-Deligne sets out to do. 
+
+The idea on how to put a HS on some vector space $H$, which tipically is the cohomology of some variety, is to find a complex $K^\bullet$ and a filtration by subcomplexes $F$ in such a way that the cohomology of $K^\bullet$ is $H$ and the induced filtration in cohomology is a Hodge filtration. One then also wants a way to relate the integral part and the complex part. This is encoded in the definition of a Hodge complex.
+
+To mimic the K\"{a}hler case, one can lift this construction to the level of complexes of sheaves and start with two complexes of sheaves $\calK_\ZZ^\bullet, \calK^\bullet_\CC$, one of abelian groups and one of complex vector spaces, a relation between them and a filtration $F$ on $\calK^\bullet_\CC$ such that the hypercohomology group $\HH^k(X,\calK^\bullet_\CC)$ is our vector space $H$ and the filtration induced by $F$ is Hodge. This is encoded in the definition of a Hodge complex of sheaves.
+
+The picture to have in mind is the following:
+\[
+HCS \Longrightarrow HC \Longrightarrow HS
+\]
+
+\begin{defn}
+    A \emph{Hodge complex} HC of weight $n$ is the data of:
+    \begin{enumerate}
+    \item  a bounded below complex of abelian groups $K^\bullet_\Z \in \Ob \D^+(\ZZ)$ s.t. its cohomology groups $H^k(K^\bullet_\Z)$ are f.g.
+        \item a bounded below filtered complex of complex vector spaces $(K^\bullet_\CC, F)  \in \Ob \D^+F(\CC)$ with differential strictly compatible with $F$ and a
+        \item comparison morphism $\alpha \colon K^\bullet_\ZZ  \xdasharrow{\phantom{somes}} K^\bullet_\CC $, which is a pseduo-morphism which becomes a pseudo-isomorphism after tensoring with $\CC$
+        \[
+        \alpha \otimes \mathrm{id}  \colon K^\bullet_\ZZ \otimes \CC   \xdasharrow{ \phantom{s} $\sim$ \phantom{s} }  K^\bullet_\CC,
+        \]
+        s. t. the induced filtration on $H^k(K^\bullet_\CC)$ determines a Hodge structure of weight $k+n$ on $H^k(K^\bullet_\Z)$.
+    \end{enumerate}
+    
+    Its associated \textbf{Hodge-Grothendieck characteristic} is
+    \begin{align*}
+        \chi_{Hdg} (K^\bullet) \defeq \sum_{k \in \Z} (-1)^k \left[ H^k(K^\bullet)  \right] \in K_0(\mathfrak{hs}).
+    \end{align*}
+\end{defn}
+
+
+Let $X$ be a topological space.
+\begin{defn}
+    A Hodge complex of sheaves HCS of weight $n$ on $X$ is the data of:
+    \begin{enumerate}
+    \item a bounded below complex of sheaves of abelian groups $\calK^\bullet_\Z \in \Ob \D^+(X,\Z)$ s.t. its hypercohomology groups $\HH^k(X,\calK^\bullet_\Z)$ are f.g., 
+    \item a bounded below filtered complex of sheaves of complex vector spaces $(\calK^\bullet_\CC, F)  \in \Ob \D^+F(X,\CC)$ and a
+    \item comparison morphism $\alpha \colon \calK^\bullet_\ZZ  \xdasharrow{\phantom{somes}} \calK^\bullet_\CC $ which becomes a pseudo-isomorphism after tensoring with $\CC$
+        \[
+        \alpha \otimes \mathrm{id}  \colon \calK^\bullet_\ZZ \otimes \CC   \xdasharrow{ \phantom{s} $\sim$ \phantom{s} }  \calK^\bullet_\CC,
+        \]
+         \end{enumerate}
+        s. t. the induced filtration on $\HH^k(X,\calK^\bullet_\CC)$ determines a Hodge structure of weight $k+n$ on $\HH^k(X,\calK^\bullet_\Z)$.
+    Moreover, one requires that the spectral sequence for the derived complex $R\Gamma(X, \calK_\CC^\bullet)$ (the complex whose cohomology gives the hypercohomology of $\calK_\CC^\bullet$) with the induced filtration 
+    \[ 
+    E_1^{p,q} = \HH^{p+q}(X,\Gr_F^p\calK_\CC^\bullet) \Rightarrow \HH^{p+q}(X, \calK_\CC^\bullet)
+    \]
+    degenerates at $E_1$.
+\end{defn}
+
+\begin{rem}
+    The requirement of the degeneration of the spectral sequence comes from the K\"{a}hler case. In fact, in this case, $\calK^\bullet_\CC$ is $\Omega^\bullet_X$ and $F^p$ is the trivial filtration $\sigma^{\geq p}$. Hence
+    \[
+    \Gr_F^p\calK_\CC^\bullet = \left( 0 \to \cdots \to 0 \to \Omega^p_X \to 0 \to \cdots \right) =: \underline{\Omega}^p_X[-p]
+    \]
+    and the spectral sequence is
+    \[
+    E_1^{p,q} = \HH^{p+q}(X,\Gr_F^p\calK_\CC^\bullet) = H^q(X,\Omega^p_X) \Rightarrow \HH^{p+q}(X, \calK_\CC^\bullet) = H^{p+q}_{dR}(X,\CC)
+    \]
+    for which we know degeneracy at $E_1$.
+\end{rem}
+
+The notions of a Hodge complex and that of a Hodge complex of sheaves are related, by the definitions, in the following way.
+
+\begin{prop}\textup{\cite[Prop. 2.33]{PS08}}
+Given a Hodge complex of sheaves on X of weight m $(\calK^\bullet_\Z,(\calK^\bullet_\CC,F),\alpha)$,
+any choice of representatives for $(R \Gamma (\calK_\Z^\bullet),(R \Gamma (\calK_\CC^\bullet,F)),R \Gamma (\alpha))$ yields a Hodge complex.
+\end{prop}
+
+\begin{es} Let X be a compact K\"ahler manifold, the constant sheaf $\Z_X$ (considered as a complex supported in degree zero), the holomorphic De Rham complex $\Omega_X^\bullet$ with the trivial filtration $\sigma$ together with the inclusion $\Z_X \hra \Omega_X^\bullet$ (which gives the quasi-isomorphism $\CC_X \hra \Omega_X^\bullet$) is a Hodge complex of sheaves of weight 0. This complex will be called the \emph{Hodge-De Rham complex of
+sheaves on X} and be denoted by $\mathcal{H}dg^\bullet(X) = (\Z_X, (\Omega_X^\bullet, \sigma), \Z_X \hra \Omega_X^\bullet)$.
+
+Taking global sections on a $\Gamma$-acyclic resolution gives $R\Gamma \calH dg^\bullet(X)$, the canonically associated De Rham complex of $X$.
+\end{es}
+
+We now turn to the case which interests us of mixed Hodge structures.
+\begin{defn}
+    A mixed Hodge complex MHC 
+    \[
+    K^\bullet = (K^\bullet_\Z,(K^\bullet_\QQ,W),\alpha ,(K^\bullet_\CC,W,F),\beta )
+    \]
+    is given by the data of
+    \begin{enumerate}
+        \item  a bounded below complex $K^\bullet_\Z \in \Ob \D^+(\Z)$ of abelian groups s.t. the cohomology groups $H^k(K^\bullet_\Z)$ are f.g.,
+        \item a bounded below filtered complex of rational vector spaces $(K^\bullet_\QQ, W)  \in \Ob \D^+F(\QQ)$ and a pseudo-morphism $\alpha \colon K^\bullet_\ZZ  \xdasharrow{\phantom{somes}} K^\bullet_\QQ $ which becomes a pseudo-isomorphism after tensoring with $\CC$
+        \[
+        \alpha \otimes \mathrm{id}  \colon K^\bullet_\ZZ \otimes \QQ   \xdasharrow{ \phantom{s} $\sim$ \phantom{s} }  K^\bullet_\QQ,
+        \]
+        \item  a bounded below bifiltered complex of complex vector spaces $(K^\bullet_\CC, W, F)  \in \Ob \D^+F_2(\CC)$ together with a pseudo-morphism $\beta \colon ( K^\bullet_\QQ, W)  \xdasharrow{\phantom{somes}} (K^\bullet_\CC, W) $ which becomes a pseudo-isomorphism after tensoring with $\CC$
+        \[
+        \beta \otimes \mathrm{id}  \colon (K^\bullet_\QQ, W) \otimes \CC   \xdasharrow{ \phantom{s} $\sim$ \phantom{s} }  (K^\bullet_\CC,W) ,
+        \]
+    \end{enumerate}
+    s. t. for all $m$ in $\Z$ the triple $\Gr_m^W(K^\bullet) \defeq (\Gr_m^W(K^\bullet_\QQ),(\Gr_m^W(K^\bullet_\CC),F), \Gr_m^W(\beta)) $ is a $\QQ$-Hodge complex of weight $m$. 
+\end{defn}
+
+In the Grothendieck ring of pure Hodge structures, the associated \textbf{Hodge-Grothendieck characteristic} is given by 
+\begin{align} \label{HdgcharMHC}
+\chi_{Hdg}(K^\bullet) \defeq \sum_{k,m \in \Z} (-1)^k [H^k(\Gr_m^W K^\bullet)] \in K_0(\mathfrak{hs}).
+\end{align}
+
+
+
+Let $X$ be a topological space.
+\begin{defn}
+    A (cohomological) mixed Hodge complex of sheaves CMHC
+    \[
+    \calK^\bullet = (\calK^\bullet_\Z,(\calK^\bullet_\QQ,W),\alpha ,(\calK^\bullet_\CC,W,F),\beta )
+    \]
+    is given by the following:
+    \begin{enumerate}
+        \item  $\calK^\bullet_\Z \in \Ob \D^+(X,\Z)$ is a bounded below complex of sheaves of abelian groups s.t. the hypercohomology groups $\HH^k(X,\calK^\bullet_\Z)$ are f.g.,
+        \item a bounded below filtered complex of sheaves of rational vector spaces $(\calK^\bullet_\QQ, W)  \in \Ob \D^+F(X,\QQ)$ and a pseudo-morphism $\alpha \colon \calK^\bullet_\ZZ  \xdasharrow{\phantom{somes}} \calK^\bullet_\QQ $ which becomes a pseudo-isomorphism after tensoring with $\QQ$
+        \[
+        \alpha \otimes \mathrm{id}  \colon \calK^\bullet_\ZZ \otimes \QQ   \xdasharrow{ \phantom{s} $\sim$ \phantom{s} }  \calK^\bullet_\QQ,
+        \]
+        \item  a bounded below bifiltered complex of sheaves of complex vector spaces $(\calK^\bullet_\CC, W, F)  \in \Ob \D^+F_2(X,\CC)$ together with a comparison pseudo-morphism  $\beta \colon ( \calK^\bullet_\QQ, W)  \xdasharrow{\phantom{somes}} (\calK^\bullet_\CC, W) $ which becomes a pseudo-isomorphism after tensoring with $\CC$
+        \[
+        \beta \otimes \mathrm{id}  \colon (\calK^\bullet_\QQ \otimes \CC , W)   \xdasharrow{ \phantom{s} $\sim$ \phantom{s} }  (\calK^\bullet_\CC,W)
+        \]
+    \end{enumerate}
+    s. t. for all $m$ in $\Z$ the triple $\Gr_m^W(\calK^\bullet) \defeq (\Gr_m^W(\calK^\bullet_\QQ),(\Gr_m^W(\calK^\bullet_\CC),F), \Gr_m^W(\beta)) $ is a $\QQ$-Hodge complex of sheaves of weight $m$. 
+\end{defn}
+
+We also need Tate twists:
+\begin{defn}
+    Let $K^\bullet = (K^\bullet_\Z, W, F)$ be a mixed Hodge complex. Its $k$-th Tate twist is defined by
+    \[
+    K^\bullet(k) = ( K_\ZZ^\bullet \otimes_\Z \Z(2 \pi i)^k, W[2k],F[k]).
+    \]
+\end{defn} 
+A similar definition holds for $\calK^\bullet(k)$, where $\calK^\bullet$ is a mixed Hodge complex of sheaves.
+
+\begin{rem}
+    One can normalise the choice of the comparison morphisms as
+follows. Since comparison morphisms become morphisms in the derived category, they can be represented by a left fraction. A choice of such a left fraction for both comparison morphisms is called a normalisation. We speak of normalized mixed Hodge complexes. Concretely, we have a tent-like structure
+\[
+\begin{tikzcd}
+    & \tilde{\calK}_\QQ^\bullet  &   &  (\tilde{\calK}_\CC^\bullet, W)  &  \\
+  \calK_\ZZ^\bullet \arrow{ru}{\alpha_1} &  & (\calK_\QQ^\bullet, W)  \arrow{ru}{\beta_1} \arrow{lu}{\alpha_2}[swap]{\underset{\sim}{\qis}}  & &  (\calK_\CC^\bullet, W, F) \arrow{lu}{\beta_2}[swap]{\underset{\sim}{\qis}}
+\end{tikzcd}
+\]
+where $\alpha_1$ is a morphism of complexes of $\Z$-modules, $\alpha_2$ is a quasi-isomorphism of $\QQ$-vector spaces, $\beta_1$ is a filtered morphism of $\QQ$-modules and $\beta_2$ is
+a quasi-isomorphism of filtered $\CC$-vector spaces. The morphisms $\alpha_1$ and $\alpha_2$ respectively become quasi-isomorphisms after tensoring with $\QQ$, respectively $\CC$. A morphism between normalized mixed Hodge complexes of sheaves is a
+morphisms of the underlying mixed Hodge complexes of sheaves preserving the normalisations.
+\end{rem} 
+
+
+%The definition of a morphism between mixed Hodge complexes or mixed Hodge complexes of sheaves is a bit subtle, since the comparison maps induce diagrams which only should commute up to homotopy.
+
+\begin{rem}
+    Given a short exact sequence $0 \ra K^\bullet \ra L^\bullet \ra M^\bullet \ra 0$ of mixed Hodge complexes, we have 
+    \begin{align} \label{Hdg-characteristic-SES}
+        \chi_{Hdg}(L^\bullet)= \chi_{Hdg}(K^\bullet) + \chi_{Hdg}(M^\bullet).
+    \end{align}
+    This follows from \eqref{sumses}.
+\end{rem}
+
+
+The following result is the main tool to construct mixed Hodge structures.
+\begin{theorem}\textup{\cite[Thm. 3.18]{PS08}}\label{MainThm}
+    Let 
+    \[ \calK^\bullet = (\calK^\bullet_\Z,(\calK^\bullet_\QQ,W),\alpha ,(\calK^\bullet_\CC,W,F),\beta )
+    \]
+    be a (cohomological) mixed Hodge complex of sheaves on $X$. Put
+    \[ K^\bullet_\Z = R\Gamma(\calK^\bullet_\Z), \qquad (K^\bullet_\QQ,W) = R\Gamma(\calK^\bullet_\QQ,W), \qquad (K^\bullet_\CC,W,F) = R\Gamma(\calK^\bullet_\CC,W,F).
+    \]
+    \begin{enumerate}
+        \item \label{1Main} The triple 
+        \[
+        R\Gamma(\calK^\bullet) = ( K^\bullet_\Z, (K^\bullet_\QQ,W), (K^\bullet_\CC,W,F) ) 
+        \] is a mixed Hodge complex. 
+        \item \label{2Main} The filtration $W[k]$ and $F$ induce a mixed Hodge structure on the hypercohomology groups $\HH^k(X,\calK_\Z^\bullet)$. In fact, we have:
+        \begin{enumerate}
+        \item \label{2aMain} The filtration on $\HH^k(X,\calK_\QQ^\bullet)$ defined by 
+        \[
+        \tilde{W}_m\HH^k(X,\calK_\QQ^\bullet) \defeq \im(\HH^k(X,W_{m-k}\calK_\QQ^\bullet) \to \HH^k(X,\calK_\QQ^\bullet))
+        \] and the $F$-filtration induced on   $\HH^k(X,\calK_\CC^\bullet)$ induce a mixed Hodge structure on $\HH^k(X,\calK_\Z^\bullet)$.
+        \item \label{2bMain} The spectral sequence for $\left(R \Gamma\left(X, \mathcal{K}^{\bullet}\right), W\right)$ whose $E_{1}$-term is given by
+\[
+E_{1}^{-m, k+m}=\mathbb{H}^{k}\left(X, \operatorname{Gr}_{m}^{W} \mathcal{K}_{\mathbb{Q}}^{\bullet}\right)
+\]
+degenerates at $E_{2}$ :
+
+\[
+E_{2}^{-m, k+m}  =E_{\infty}^{-m, k+m}=\operatorname{Gr}_{m+k}^{\tilde{W}} \mathbb{H}^{k}\left(X, \mathcal{K}_{\mathbb{Q}}^{\bullet}\right) .
+\]
+\item The spectral sequence
+$$
+{ }_{F} E_{1}^{p, q}=\mathbb{H}^{p+q}\left(X, \operatorname{Gr}_{F}^{p} \mathcal{K}_{\mathbb{C}}^{\bullet}\right) \Longrightarrow \mathbb{H}^{p+q}\left(X, \mathcal{K}_{\mathbb{C}}^{\bullet}\right)
+$$
+degenerates at $E_{1}$; in particular the natural maps
+$$
+\mathbb{H}^{k}\left(X, F^{p} \mathcal{K}^{\bullet}\right) \rightarrow \mathbb{H}^{k}\left(X, \mathcal{K}_{\mathbb{C}}^{\bullet}\right)
+$$
+are injective and
+$$
+\Gr_{F}^{p} \HH^{k}\left(X, \calK_{\mathbb{C}}^{\bullet}\right)=\HH^{k}\left(X, \Gr_{F}^{p} \mathcal{K}_{\mathbb{C}}^{\bullet}\right)
+$$
+\item The spectral sequence for the filtered complex $\left(\operatorname{Gr}_{F}^{p}\left(R \Gamma\left(X, \mathcal{K}_{\mathbb{C}}^{\bullet}\right), W\right) \right.$  degenerates at $E_{2}$.
+
+         \end{enumerate}
+         \item \label{3Main} Any morphism of mixed Hodge complexes of sheaves on $X$ induces a homomorphism of mixed Hodge structures on the associated hypercohomology groups.
+    \end{enumerate}
+
+\end{theorem}
+
+The process can be seen as 
+\[
+CMHC \Longrightarrow MHC \Longrightarrow MHS
+\]
+
+Most known mixed Hodge structures are constructed this way.
+
+Note that \eqref{1Main} follows from the definitions and \eqref{3Main} follows from \eqref{2aMain}.
+
+We also have the equality
+\begin{align} \label{HdgcharofMHS}
+    \chi_{Hdg} (R\Gamma \calK ^\bullet)=\sum_k (-1)^k \left[ \HH^k(X, \calK^\bullet) \right] \in K_0(\mathfrak{hs}).
+\end{align}
+This follows from the equalities
+\begin{align*}
+      \chi_{Hdg} (R\Gamma \calK ^\bullet) &= \sum_{k,m} (-1)^k \left[ \HH^k(X, \Gr_m^W \calK^\bullet) \right] \\
+      &= \sum_{k,m} (-1)^k \left[ \Gr_{k+m}^W \HH^k(X,  \calK^\bullet) \right] \\
+      &= \sum_{k,m} (-1)^k \left[ \Gr_{m}^W \HH^k(X,  \calK^\bullet) \right] = \sum_{k} (-1)^k \left[ \HH^k(X,  \calK^\bullet) \right]
+\end{align*}
+where the second equality follows from \eqref{2bMain} taking into account the shift of the weight filtration when we pass to hypercohomology.
+
+The most important example of this is the construction of the mixed Hodge structure on the cohomology of a smooth variety we have seen before. Indeed, Thm. \ref{DelMainThm} becomes a consequence of Thm. \ref{MainThm} if we set
+\[
+\calH dg^\bullet(X \log D) = (Rj_*\ZZ_U,(Rj_*\QQ_U,\tau), \alpha,   (\Omega_X^\bullet(\log D)),W,F) , \beta )
+\]
+to be our mixed Hodge complex of sheaves, where 
+\[
+\alpha \colon Rj_*\ZZ_U \to Rj_*\QQ_U
+\]
+is the obvious morphism and $\beta \colon (Rj_*\QQ_U,\tau)  \xdasharrow{\phantom{somes}} (\Omega_X^\bullet(\log D)),W) $ is the filtered pseudo-morphism which becomes a pseudo-isomorphism after tensoring with $\CC$ given by step 1 of the proof of \ref{DelMainThm}.
+
+$\calH dg^\bullet(X \log D)$ is called the \textbf{Hodge-De Rham complex of} $(X,D)$ .
+
+From Thm. \ref{MainThm} this mixed Hodge complex of sheaves gives rise to the natural mixed Hodge structure on $H^n(U,\C)$.
+
+For the Hodge-Grothendieck character of $U$ and its Hodge-Euler polynomial we have
+\begin{align}
+    \chi_{Hdg}(U) &\defeq \sum_{k \geq 0} (-1)^k [ H^k(U)] = \sum_{m \geq 0} (-1)^m \chi_{Hdg}(D(m)) \cdot \LL^m \label{HdgEulerChar} \\
+    e_{Hdg}(U) &= \sum_{k,p,q \geq 0} (-1)^k h^{p,q} [H^k(U)] u^p v^q \label{HdgEulerPol} \\ 
+    &= \sum_{m \geq0} (-1)^m e_{Hdg} (D(m)) (uv)^m.
+\end{align}
+
+%where the second equality follows from the fact that the $\Z$-part of the Hodge-De Rham complex $\calH dg^\bullet(X \log D)$ is $Rj_*\Z_U$ and for every $m$ we have a quasi-isomorphism $R^mj_*\Z_U \xrightarrow{\sim} $
+
+In particular, we have for all $p,q \geq 0$
+\[
+\sum_{k \geq 0} (-1)^k h^{p,q} [H^k(U)] = (-1)^{p+q} \sum_{m \geq 0 } (-1)^m h^{p-m,q-m} (D(m)).
+\]
+
+
+
+
+
+Recall the notion of the cone of a morphism between complexes in an additive category.
+Let $f \colon K^\bullet \to L^\bullet$ be a morphism of complexes. The cone $Cone^\bullet(f)$ over $f$ is the complex 
+\begin{align*}
+    Cone^q(f) &= K^{q+1} \oplus L^q \\
+    d(x,z) &= (-dx,-f(x)+dz), \quad x \in K^{q+1}, \quad z \in L^q
+\end{align*}
+It sits in the short exact sequence for the cone:
+\begin{align} \label{SESCone}
+    0 \lra L^\bullet \lra Cone^\bullet(f) \lra K^\bullet[1] \lra 0 
+\end{align}
+or, if we work in the derived category, in the distinguished triangle:
+\begin{align}  \label{TriCone}
+\xymatrix{
+K^\bullet \ar[rr]^{f} && L^\bullet  \ar[dl]  \\
+& Cone^\bullet(f) \ar[ul]^{[1]}  &
+}
+\end{align}
+and they both induce the same long exact sequence in cohomology
+\begin{align} \label{LES}
+    \cdots \lra H^i(K^\bullet) \lra H^i(L^\bullet) \lra H^i(Cone^\bullet(f))\lra H^{i+1}(K^\bullet) \lra  \cdots 
+\end{align}
+
+The following theorem allows us to put a structure of CMHC on the cone of a morphism between CMHC. We will call it the \emph{Mixed Cone}.
+
+\begin{theorem} \textup{\cite[Thm. 3.22]{PS08}} \label{MixedCone}
+    Let $\calK^\bullet \xrightarrow{\phi} \calL^\bullet $ be a morphism of cohomological mixed Hodge complexes of sheaves. We denote the weight and Hodge filtrations on $\calK^\bullet$ by $W_\bullet(\calK), F^\bullet(\calK)$ and similarly for $\calL^\bullet$.
+    \begin{enumerate}
+        \item \label{MixedCone1} Put \begin{align*}
+            W_m Cone^p(\phi_\QQ) &= W_{m-1}\calK^{p+1}_\QQ \oplus W_m\calL^\bullet_\QQ \\
+            F^r Cone^p(\phi_\CC ) &= F^r \calK^{p+1} \oplus F^r \calL^p_\CC.
+        \end{align*}
+        These filtrations put the structure of a cohomological mixed Hodge complex of sheaves on the cone.
+        \item \label{MixedCone2} There is an exact sequence of mixed Hodge complexes of sheaves
+        \[
+         0 \lra \calL^\bullet \lra Cone^\bullet(\phi) \lra \calK^\bullet[1] \lra 0
+        \]
+        inducing a long exact sequence 
+        \[
+          \cdots \lra \HH^i(X,\calK^\bullet) \lra \HH^i(X,\calL^\bullet) \lra \HH^i(X,Cone^\bullet(\phi))\lra \HH^{i+1}(X,\calK^\bullet) \lra  \cdots
+        \]
+        of mixed Hodge structures with connecting homomorphism induced by $\phi$. In particular all maps are morphisms of mixed Hodge structures.
+        \item \label{MixedCone3} We have
+        \begin{align} \label{CharCone}
+        \chi_{Hdg}(R\Gamma Cone^\bullet(\phi))=\chi_{Hdg}(R\Gamma\calL^\bullet)-\chi_{Hdg}(R\Gamma\calK^\bullet)
+        \end{align}
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    We have that $\Gr^W_m Cone^\bullet(\phi) = \Gr^W_{m-1} \calK^\bullet[1] \oplus \Gr^W_m \calL^\bullet$ and since the map $\phi$ maps $W_{m-1}\calK^p$ to $W_{m-1}\calL^p$, the differential for $\Gr^W_m Cone^\bullet(\phi)$ is $d(x,z) = (-dx,-\phi(x)+dz) = (-dx, dz)$ since $\phi(x) $ is in $W_{m-1}\calL^p$ hence it is zero in $\Gr^W_m \calL^p$. This shows that this sum decomposition is compatible with the Hodge filtration $F^\bullet$, hence since both  $\Gr^W_{m-1} \calK^\bullet[1]$ and $\Gr^W_m \calL^\bullet$ are Hodge complexes of sheaves of weight $m$, the direct sum $\Gr^W_m Cone^\bullet(\phi)$ is. This shows \eqref{MixedCone1}. \eqref{MixedCone2} follows from the definitions and the existence of the short exact sequence for a cone \eqref{SESCone} and \eqref{MixedCone3} follows from Corollary \ref{SummGrses} and \eqref{Hdg-characteristic-SES}. 
+\end{proof}
+
+
+
+
+Let's use the \emph{mixed cone} to see an example that shows how one can define a mixed Hodge structure on the relative cohomology of a pair.
+Let $Y  \stackrel{i}\hookrightarrow X $ be a closed smooth subvariety of a compact K\"{a}hler manifold $X$. Let $U=X\setminus Y$ be the open complement of $Y$ in $X$. We obtain a long exact sequence of relative cohomology groups
+\begin{equation}
+\label{relative-coho-seq}
+\cdots\longrightarrow H^i(X,U)\lra H^i(X)\lra H^i(U)\lra H^{i+1}(X,U)\lra \cdots
+\end{equation}
+
+We see that this sequence is actually an exact sequence of mixed Hodge structures, where the Hodge structure on $H^i(X)$ is the usual pure Hodge structure on the cohomology of a compact K\"{a}hler manifold, while $H^i(U)$ has the mixed Hodge structures given by the theorem of Deligne and $H^{i}(X,U)$ carries a mixed Hodge structure 
+by Thm. \ref{MixedCone} induced by the mixed cone.
+
+Indeed, recall that for any smooth compact K\"{a}hler manfold $Z$ we have introduced its Hodge-De Rham complex (of sheaves) 
+\[
+\mathcal{H}dg^\bullet(Z) = (\Z_Z, (\Omega_Z^\bullet, \sigma), \Z_Z \hra \Omega_Z^\bullet).
+\]
+The relative cohomology $H^\bullet(X,Y)$ can be viewed as the hypercohomology of 
+\[
+\mathcal{H}dg^\bullet(X,Y) \defeq Cone^\bullet \{ \mathcal{H}dg^\bullet(X) \xrightarrow{i^*} i_*\mathcal{H}dg^\bullet(Y) \}
+\]
+and hence carries a mixed Hodge structure making the long exact sequence for the pair $(X,Y)$ an exact sequence of mixed Hodge structures. We can do the same for the pair $(X,U)$, just replace $\mathcal{H}dg^\bullet(Y)$ by a mixed Hodge complex of sheaves giving the mixed Hodge structure on the cohomology of the smooth open variety $U$.
+
+Let's study this sequence of mixed Hodge structures in a specific example involving elliptic curves, given that we know the Hodge structures on their cohomology groups (Ex. \ref{example-ell-curve}).
+
+\begin{es}  \label{puncturedellipticex}
+
+%% scrivi i dettagli di questo esempio %%
+We know that an elliptic curve $E$ is determined uniquely up to isomorphism by the Hodge structure on $H^1(E,\ZZ)\cong \ZZ^2$ from Torelli's theorem \ref{Torelli}. This statement remains true if we consider the non-compact variety $E\setminus \{p\}$ obtained by removing a point $p$ on $E$. In fact, puncturing once leaves unchanged $H^1(E,\ZZ)$ even if it kills $H^2(E,\ZZ)$, so 
+\[H^1(E,\ZZ) = H^1(E\setminus\{p\},\ZZ).\] 
+
+This is not true anymore if we remove from the elliptic curve more than one point. Denote $U := E\setminus\{p_1,...,p_k\}$, for $k \geq 1$ and $p_i \neq p_j$ for $i \neq j$. Then
+\[H^1(U,\QQ)\simeq \QQ^{k+1}\]
+because for example $U$ is homotopy equivalent to a bouquet of $k+1$ circles $S^1$.
+When $k$ is even, we see that $H^1(U,\QQ)$ has odd rank. It therefore cannot support a pure Hodge structure of weight one, as any lattice supporting such a structure must necessarily have even rank since $h^{1,0}+h^{0,1} = 2h^{1,0}$.
+Nevertheless we can calculate the mixed Hodge structure given by Thm. \ref{deligne-on-smooth} and we have, by Thm. \ref{deligne-numbers} that it can only be concentrated in weight $1$ and $2$.
+
+
+To compute the mixed Hodge structure on $H^1(U,\QQ)$ we introduce the complex of sheaves $\Omega^\bullet_E( \log D)$ where $D=\sum_j p_j$. It is given by:
+\[
+\calO_E \lra \Omega^1_E( \log D).
+\]
+Its hypercohomology, by Thm. \ref{Deligne}, gives us the cohomology of $U$. Namely,
+\begin{align*}
+    \HH^n(E,\Omega^\bullet_E( \log D))\simeq H^n(U,\CC) \simeq \left\{\begin{array}{ll} \CC & n=0 \\ \CC^{k+1} & n=1 \\  0& n \neq 0,1\end{array}\right. 
+\end{align*}
+
+
+
+As we done in Ex. \ref{example-MHS3}, we now look at the filtration $W$ on $L^\bullet \defeq \Omega^\bullet_E( \log D)$:
+
+\[
+\begin{tikzcd} % [row sep=small]
+W_{1}(L^\bullet) : & \calO_{E}\arrow[r] & \Omega^1_{E}(\log\{p_1,\ldots,p_k\})\\
+W_{0}(L^\bullet) : & \calO_{E}\arrow[r] \arrow[u, phantom, sloped, "\subseteq"] & \Omega^1_{E} \arrow[u, phantom, sloped, "\subset"]\\
+W_{-1}(L^\bullet) : & 0\arrow[r] \arrow[u, phantom, sloped, "\subset"] & 0 \arrow[u, phantom, sloped, "\subset"]\\
+\end{tikzcd}
+\]
+
+which induces the filtrations in hypercohomology:
+\begin{center}
+\begin{minipage}[c][0.2\textheight]{0.45\textwidth}
+\begin{tikzcd} [row sep=small]
+ W_0(\HH^0(E,L^\bullet)) : & \CC \\
+W_{-1}(\HH^0(E,L^\bullet)) : & 0 \arrow[u, phantom, sloped, "\subset"] \\
+\end{tikzcd}
+\end{minipage}% 
+\begin{minipage}[c][0.2\textheight]{0.45\textwidth}
+\begin{tikzcd} [row sep=small]
+ W_2(\HH^1(E,L^\bullet)) : & \CC^{k+1} \\
+W_{1}(\HH^1(E,L^\bullet)) : & \CC^2 \arrow[u, phantom, sloped, "\subset"] \\
+W_{0}(\HH^1(E,L^\bullet)) : & 0 \arrow[u, phantom, sloped, "\subset"] \\
+\end{tikzcd}
+\end{minipage}
+\end{center}
+These calculations come from the fact that $ W_m \HH^k(E,L^\bullet)$ is defined as $\im \left( \HH^k(E,W_{m-k}L^\bullet) \to \HH^k(E,L^\bullet) \right)$.
+For example $ W_1 \HH^1(E,L^\bullet) = \im \left( \HH^1(E,W_{0}L^\bullet) \to \HH^1(E,L^\bullet) \right) $ and since $W_{0}L^\bullet = \Omega^\bullet_{E}$ is the holomorphic De Rham complex of $E$, $\HH^1(E,W_{0}L^\bullet) = \HH^1(E,\Omega^\bullet_{E}) = H^1(E,\CC)=\CC^2$.
+
+
+We deduce 
+\begin{equation} \label{GRW}
+\Gr_0^W \HH^0(E,L^\bullet) = \C  \quad \text{ and } \quad \Gr_1^W \HH^1(E,L^\bullet) = \C^{2},  \quad \Gr_2^W \HH^1(E,L^\bullet) = \C^{k-1} .
+\end{equation}
+
+
+The filtration $F$ on $L^\bullet$ is given by:
+\[
+\begin{tikzcd} % [row sep=small]
+F^0(L^\bullet) : & \calO_{E}\arrow[r] & \Omega^1_{E}(\log\{p_1,\ldots,p_k\})\\
+F^1(L^\bullet) : & 0\arrow[r] \arrow[u, phantom, sloped, "\subset"] & \Omega^1_{E}(\log\{p_1,\ldots,p_k\}) \arrow[u, phantom, sloped, "\subseteq"]\\
+F^2(L^\bullet) : & 0\arrow[r] \arrow[u, phantom, sloped, "\subset"] & 0 \arrow[u, phantom, sloped, "\subset"]\\
+\end{tikzcd}
+\]
+which induces the filtrations in hypercohomology:
+\begin{center}
+\begin{minipage}[c][0.2\textheight]{0.45\textwidth}
+\begin{tikzcd} [row sep=small]
+F^0(\HH^0(E,L^\bullet)) : & \CC \\
+F^1(\HH^0(E,L^\bullet)) : & 0 \arrow[u, phantom, sloped, "\subset"] \\
+\end{tikzcd}
+\end{minipage}% 
+\begin{minipage}[c][0.2\textheight]{0.45\textwidth}
+\begin{tikzcd} [row sep=small]
+F^0(\HH^1(E,L^\bullet)) : & \CC^{k+1} \\
+F^1(\HH^1(E,L^\bullet)) : & \CC^{k} \arrow[u, phantom, sloped, "\subset"] \\
+F^2(\HH^1(E,L^\bullet)) : & 0 \arrow[u, phantom, sloped, "\subset"] \\
+\end{tikzcd}
+\end{minipage}
+\end{center}
+where to calculate $F^1(\HH^1(E,L^\bullet))$ we used the fact that
+\[
+\HH^1(F^1(L^\bullet))=\HH^1(0 \lra \Omega^1_{E}(\log\{p_1,\ldots,p_k\}) )= H^0(\Omega^1_{E}(\log\{p_1,\ldots,p_k\})) \simeq \CC^k
+\]
+where we deduced the last isomorphism from the long exact sequence in cohomology associated to the short exact sequence
+\[
+0 \to \Omega^1_{E} \to \Omega^1_{E}(\log\{p_1,\ldots,p_k\}) \to \bigoplus_{j=1}^k i_{j_*}(\calO_{p_j}) \to 0
+\]
+
+i.e.
+
+\begin{tikzpicture}[descr/.style={fill=white,inner sep=1.5pt}]
+        \matrix (m) [
+            matrix of math nodes,
+            row sep=1em,
+            column sep=2.5em,
+            text height=1.5ex, text depth=0.25ex
+        ]
+        { 0 & H^0(E,\Omega^1_{E}) & H^0(E,\Omega^1_{E}(\log\{p_1,\ldots,p_k\}) & H^0(E,\bigoplus_{j=1}^k i_{j_*}(\calO_{p_j}) ) \\
+            & H^1(E,\Omega^1_{E}) & H^1(E,\Omega^1_{E}(\log\{p_1,\ldots,p_k\}) & H^1(E,\bigoplus_{j=1}^k i_{j_*}(\calO_{p_j}) ) \\
+        };
+
+        \path[overlay,->, font=\scriptsize,>=latex]
+        (m-1-1) edge (m-1-2)
+        (m-1-2) edge (m-1-3)
+        (m-1-3) edge node[midway,above] () {$\oplus res_j$} (m-1-4)
+        (m-1-4) edge[out=355,in=175] node[descr,yshift=0.3ex] {$\delta$} (m-2-2)
+        (m-2-2) edge (m-2-3)
+        (m-2-3) edge (m-2-4);
+\end{tikzpicture}
+
+
+which becomes 
+\[
+0 \lra \CC \lra H^0(E,\Omega^1_{E}(\log\{p_1,\ldots,p_k\}) \xrightarrow{\text{res}} \CC^k
+    \xrightarrow{\delta} \CC \lra H^1(E,\Omega^1_{E}(\log\{p_1,\ldots,p_k\}) \lra 0
+\]
+and because of the residue theorem, $\Sigma_{j=1}^kRes_{p_j}\omega =0$, the image of res coincides with the hyperplane $\{\Sigma_{j=1}^k z_j = 0 \} \subseteq \CC^k$. Hence $\im res \simeq \CC^{k-1} \simeq \ker \delta$. For the exactness of the sequence we get that $\ker res =\CC$, hence 
+\[
+\dim H^0(E,\Omega^1_{E}(\log\{p_1,\ldots,p_k\}) = \dim \ker res + \dim \im res = k-1+1=k
+\]
+We also deduce that the connecting homomorphism is surjective, so $H^1(E,\Omega^1_{E}(\log\{p_1,\ldots,p_k\}) = 0$.
+
+
+In conclusion we have 
+\begin{equation} \label{GRF}
+\Gr^0_F \HH^0(E,L^\bullet) = \C \qquad \Gr^0_F \HH^1(E,L^\bullet) = \CC \qquad \Gr^1_F \HH^1(E,L^\bullet) = \C^{k+1}.
+\end{equation}
+
+
+Combining \eqref{GRW} with \eqref{GRF} we deduce the Hodge numbers for the mixed Hodge structure on $H^0(U)$ and $H^1(U)$:
+\begin{eqnarray*}
+h^{p,q}H^1(U,\CC) =& \dim_\CC \Gr_F^p\Gr^W_{p+q}\HH^1(E,L^\bullet) &= \left\{\begin{array}{ll} k-1 &\quad p=q=1\\  1 &\quad p=1, q=0 \text{ or } p=0,q=1\\ 0&\quad\hbox{otherwise,}\end{array}\right.\\
+h^{p,q}H^0(U,\CC) =& \dim_\CC \Gr_F^p\Gr^W_{p+q}\HH^0(E,L^\bullet) &= \left\{\begin{array}{ll} 1 &\quad p=q=0\\ 0&\quad\hbox{otherwise.}\end{array}\right.
+\end{eqnarray*}
+
+ 
+Using algebraic topology one calculates that 
+\[H^n(E,U;\QQ)\cong\left\{\begin{array}{ll} \QQ^{k} & n=2\\ 0& n \neq 2.\end{array}\right. \]
+Now consider the long exact sequence of relative cohomology \eqref{relative-coho-seq}
+\[
+\cdots\longrightarrow H^i(E,U)\lra H^i(E)\lra H^i(U)\lra H^{i+1}(E,U)\lra \cdots
+\]
+which is
+
+
+\vspace{5mm}
+\begin{center}
+    
+\begin{tikzpicture}[descr/.style={fill=white,inner sep=1.5pt}]
+        \matrix (m) [
+            matrix of math nodes,
+            row sep=1em,
+            column sep=2.5em,
+            text height=1.5ex, text depth=0.25ex
+        ]
+        {  \overset{\text{0}}{H^0(E,U, \QQ)} & \overset{\text{1}}{H^0(E, \QQ)} & \overset{\text{1}}{H^0(U, \QQ)} & \overset{\text{0}}{H^1(E,U, \QQ)} &  \overset{\text{2}}{H^1(E, \QQ)} \\
+         \underset{k + \text{1}}{H^1(U, \QQ)} &
+             \underset{\text{k}}{H^2(E,U, \QQ)} &  \underset{\text{1}}{H^2(E, \QQ)} & \underset{\text{0}}{H^2(U, \QQ)} \\
+        };
+
+        \path[overlay,->, font=\scriptsize,>=latex]
+        (m-1-1) edge (m-1-2)
+        (m-1-2) edge (m-1-3)
+        (m-1-3) edge (m-1-4)
+        (m-1-4) edge (m-1-5)
+        (m-1-5) edge[out=355,in=175] (m-2-1)
+        (m-2-1) edge (m-2-2)
+        (m-2-2) edge (m-2-3)
+        (m-2-3) edge (m-2-4);
+\end{tikzpicture}
+
+\end{center}
+
+\vspace{5mm}
+
+By Cor. \ref{SummGrses} we can decompose the long exact sequence into graded pieces obtaining the exact sequences
+\[
+\begin{array}{lcc}
+\Gr^W_0\colon&\qquad& 0\lra \underset{\text{1}}{H^0(E,\QQ)} \stackrel{\sim}{\longrightarrow} \underset{\text{1}}{H^0(U,\QQ)} \lra 0 \\[3mm]
+\Gr^W_1\colon&& 0 \lra \underset{\text{2}}{H^1(E,\QQ)} \stackrel{\zeta}{\longrightarrow} \underset{\text{2}}{\Gr^W_1H^1(U,\QQ)} \lra  \underset{\text{0}}{\Gr^W_1H^2(E,U,\QQ)} \lra 0 \\[3mm]
+\Gr^W_2\colon&& 0\lra \underset{\text{k - 1}}{\Gr^W_2H^1(U,\QQ)} \lra \underset{\text{k}}{\Gr^W_2H^{2}(E,U,\QQ)} \ra \underset{\text{1}}{H^2(E,\QQ)}  \lra 0 \\[2mm]
+\end{array}
+\]
+
+As $\Gr_1^WH^1(U,\QQ)\cong\QQ^2$, we see that $\zeta$ must be an isomorphism and $\Gr^W_1H^2(E,U)=0$. So the pure Hodge structure on $\Gr_1^WH^1(U,\QQ)\cong\QQ^2$ is precisely the same as the one on the cohomology $H^1(E,\QQ)$ of the elliptic curve. This fact can be interpreted as follows. The mixed Hodge structure of a punctured curve remembers from which elliptic curve it comes from.  
+
+Additionally, in the third sequence above $\Gr^W_2H^1(U,\QQ) \simeq \QQ^{k-1}$ and this implies that the mixed Hodge structure on $H^2(E,U)$ must be concentrated in $\Gr_2^W$, hence it is pure of weight $2$.
+
+Zooming in, we could observe bigraded pieces, the sequences becoming:
+\[ \begin{array}{lcc}
+\Gr^0_F\Gr^W_0\colon&\qquad 0\lra H^{0}(E,\CC)\stackrel{\sim}{\longrightarrow} H^0(U,\CC) \lra 0 \\[2mm]
+\Gr^0_F\Gr^W_1\colon& 0 \lra H^{0,1}(E,\CC) \stackrel{\sim}{\longrightarrow} \Gr^0_F\Gr^W_1H^1(U,\CC)\lra 0 \\[2mm]
+\Gr^1_F\Gr^W_1\colon& 0 \lra H^{1,0}(E,\CC) \stackrel{\sim}{\longrightarrow} \Gr^1_F\Gr^W_1H^1(U,\CC)\lra 0 \\[2mm]
+\Gr^1_F\Gr^W_2\colon& 0 \lra \Gr^1_F\Gr^W_2H^1(U,\CC) \hra \Gr^1_F\Gr^W_2H^{2}(E,U,\CC) \twoheadrightarrow H^{1,1}(E,\CC)  \lra 0. \\[2mm]
+\end{array}\]
+\end{es}
+
+
+
+
+\subsection{Mixed Hodge Structures on a Normal Crossing Divisor}\label{mhsncd}
+
+We begin by defining Deligne's \cite{Del74} mixed Hodge structure on the cohomology of a normal crossing variety. Let $Y$ be a simple normal crossing space, i.e. a simple normal crossing divisor inside a complex manifold X with irreducible smooth components of the same dimension $Y_1,\ldots,Y_N$,. Let $I = \{ i_1< \dots <i_m\}$, introduce
+\begin{align*}
+    Y_I &= Y_{i_1} \cap \cdots \cap Y_{i_{m}}, \\
+     a_I &\colon Y_I \hra X 
+\end{align*}
+and define for $m \geq 0$, the \emph{codimension $m$ stratum} of $Y$ to be
+\[Y(m) = \coprod_{|I|=m}  Y_I\]
+and let $a_m= \coprod_{|I|=m} a_I \colon Y(m) \ra X$ denote the natural map. 
+Note that $Y_I$ is a submanifold of $X$ of codimension $|I|$ and the stratum $Y(m)$ is the normalisation of the union of these submanifolds. More generally, a stratum of $Y$ is any irreducible component of $Y_I$.
+The intersection of any two strata is also a union of lower-dimensional strata. Thus the minimal strata are disjoint from each other and their union is smooth.
+
+Let $\delta_j^m\colon Y(m) \to Y(m-1)$ ($1 \leq j \leq m$) denote the map whose components are the inclusions
+\[Y_{i_1} \cap \cdots \cap Y_{i_{m}} \lra Y_{i_1} \cap \cdots \cap \hat{Y}_{i_j} \cap \cdots \cap Y_{i_{m}},\]
+where $\hat{Y}_{i_j}$ denotes the omission of $Y_{i_j}$.
+
+Define a double complex
+\[B^{p,q}= (a_{q+1})_*\Omega^p_{Y(q+1)}\]
+with $d_>\colon B^{p,q}\ra B^{p+1,q}$ induced by the de Rham differential $d = \partial\colon \Omega_{Y(q+1)}^p \to \Omega_{Y(q+1)}^{p+1}$, and $d_\wedge \colon B^{p,q-1}\ra B^{p,q}$ given by the alternating restriction map
+\[d_\wedge := \delta=\sum_{j=1}^{q+1} (-1)^{q+j}(\delta_j^{q+1})^*.\] 
+
+
+Let $B^{\bullet}$ denote the associated total complex.  
+We observe that we can calculate the cohomology of $Y$ as the hypercohomology of the total complex of sheaves of this double complex:
+\begin{align}
+H^n(Y,\CC) \cong \HH^n(Y,B^{\bullet}) \label{NCDRT}\tag{Normal Crossing De Rham Theorem}
+\end{align}
+since $0 \to \CC_Y \to B^{\bullet}$ is a resolution of $\CC_Y$. To see this, first note that $B^{\bullet}$ is exact everywhere except in degree zero. Indeed, let $U$ be a contractible open set, and consider the spectral sequence for the double complex $E_0^{p,q} \defeq B^{p,q}(U)$ with the filtration by rows (cfr. \ref{doublecomplexSpSeq}). In the $E_0$-page the differential $d_0$ is $d_>=d$, hence we take cohomology with respect to the exterior derivative. The holomorphic Poincar\'e lemma (on every connected component of $Y(q+1) \cap U$) says that $E^{p,q}_1 \simeq 0$ when $p > 0$. Thus, only the first column survives to the first page. To turn the page, we need to take the cohomology with respect to the vertical combinatorial differential $d_1=\delta$, i.e. $E_2^{0,q} \simeq H_\delta^q(E_1^{0,\bullet})$. One easily sees that the only group surviving to the $E_2$-page is $E_2^{0,0}$ which is nothing but the kernel of 
+\[
+(a_1)_*\Omega^0_{Y(1)} (U)\xrightarrow{d_>+d_\wedge} (a_1)_*\Omega^1_{Y(1)} (U) \oplus (a_2)_*\Omega^0_{Y(2)}(U),
+\]
+i.e. the sheaf of well-defined constant function on $Y$ valued on $U$, i.e. $\CC_Y (U)$.
+
+Next consider the two filtrations $W_\bullet$ and $F^\bullet$ defined on $B^{\bullet,\bullet}$ via
+\[ W_k B^{p,q}=\left\{\begin{array}{lcl} B^{p,q} &\quad&\hbox{for } q\geq -k\\ 0 &&\hbox{otherwise},\end{array}\right.
+\qquad\qquad
+F^k B^{p,q}=\left\{\begin{array}{lcl} B^{p,q} &\quad&\hbox{for } p\ge k\\ 0 &&\hbox{otherwise}.\end{array}\right.\]
+and the induced filtration on the total complex $B^{\bullet}$  .
+
+One can check that this induces a CMHC, cohomological mixed Hodge complex of sheaves
+\[      
+\mathcal{H}dg^\bullet(Y) = (\Z_Y ,(a_{\bullet}(\QQ_{Y({\bullet})}),W), \alpha ,(B^\bullet,W,F),   \beta)   
+\] 
+where  
+\[
+\alpha \colon \QQ_Y \xrightarrow{\sim} a_{\bullet}(\QQ_{Y({\bullet})})
+\]
+is the quasi-isomorphism induced by the inclusion $0 \to \QQ_Y \to  a_{1}(\QQ_{Y(1)})$ and the fact that $a_{\bullet}(\QQ_{Y({\bullet})})$, like the columns of the double compex $B^{\bullet,\bullet}$, is an exact complex.
+\[
+\beta \colon (a_{\bullet}(\QQ_{Y({\bullet})}),W) \otimes \CC \xrightarrow{\sim} (B^\bullet,W)
+\]
+is the quasi-isomorphism induced by the inclusions $ 0 \to a_{q}(\QQ_{Y({q})}) \to B^{0,q-1}= a_{q}(\calO_{Y({q})})$.
+This CMHC gives a MHC, mixed Hodge complex
+    \[ 
+    ( R\Gamma(\Z_Y), R\Gamma(a_{\bullet}(\QQ_{Y({\bullet})}),W), R\Gamma(B^\bullet,W,F) ) 
+        \]
+    which in turn gives a mixed Hodge structure of weight $n$ on the cohomology $H^n(Y,\Z)$. 
+    
+    Indeed, if we denote the irreducible components of $Y(q)$ by $Y(q)_i$, then
+\begin{equation}
+\Gr_{-q}^WB^{k}= \Gr_{-q}^WB^{p+q} \cong B^{p,q} = \bigoplus_i(a_{q+1})_*\Omega^p_{Y(q+1)_i} = \bigoplus_i(a_{q+1})_*\Omega^{k-q}_{Y(q+1)_i},
+\label{B-gradeds} \end{equation}
+so $\Gr_{-q}^WB^{\bullet}$ is just a direct sum of de Rham complexes of smooth projective manifolds. Thus, for the spectral sequence for the hypercohomology of the complex of sheaves $B^\bullet$ with the decreasing filtration $W^\bullet = W_{-\bullet}$, ref. \ref{thm:specseq}, we have
+\[ 
+E_1^{p,q} = \HH^{p+q}(Y,\Gr_{q}^{W^\bullet}B^\bullet) = \HH^{p+q}(Y,\Gr_{-q}^{W_\bullet}B^\bullet) =  \bigoplus_i \HH^{p+q}(Y, \Omega^{\bullet - q}_{Y(q+1)_i}) = \bigoplus_i H^{p}(Y(q+1)_i,\CC)
+\] 
+where we sum over the submanifolds $Y(q+1)_i$ whose disjoint union form $Y(q+1)$. The natural pure Hodge structure is of weight $p=n-q$ on $H^{p}(Y(q+1)_i,\CC)$ and is induced by $F$. This is exactly what is required for the $W$-graded pieces of a mixed Hodge structure of weight $n$ (as well as for a cohomological mixed Hodge complex of sheaves). For Thm. \ref{MainThm} this spectral sequence collapses on the second page:
+\[
+E_2^{p,q}=H_{d_\wedge}^{q}(\HH_{d_>}^{p} (B^{\bullet,\bullet}))=E_\infty^{p,q}=\Gr_q^{W} \HH^{p+q}(Y,B^\bullet) = \Gr_q^{W} H^{p+q}(Y,\CC).
+\]
+Note that, since $W^\bullet$ is the filtration by rows, this spectral sequence has a leftward orientation (for a definition see remark \ref{spseqorientation}).
+
+From \eqref{HdgcharofMHS} we see that for the Hodge characteristic we have
+\begin{align} \label{HdgcharNCD}
+    \chi_{Hdg} (Y)= \sum_{q \geq 1} (-1)^q \chi_{Hdg} (Y(q)). 
+\end{align}
+
+
+
+\begin{es} 
+\label{example-MHS4}
+Consider the singular subvariety $Y=V(xyz)$ of $\PP^2=\CC\Proj[x,y,z]$ given as the union of the three coordinate lines; topologically this is a necklace of three copies of $\PP^1$. Indeed it is a normal crossing divisor $Y=Y_1+Y_2+Y_3 \defeq V(x)+V(y)+V(z)$ in $\PP^2$. Note that 
+\begin{align*}
+Y_{12} \defeq Y_1 \cap Y_2 = V(xy)= \{ [0:0:1] \} \\
+Y_{13} \defeq Y_1 \cap Y_3 = V(xz) = \{ [0:1:0] \} \\
+Y_{23} \defeq Y_2 \cap Y_3 = V(yz) = \{ [1:0:0] \}
+\end{align*} 
+Our aim is to compute the mixed Hodge structure of $H^n(Y,\CC) = \HH^n(Y,B^{\bullet})$ (for $B^{\bullet}$ as above). 
+
+In order to do this, consider the filtered complex $(B^\bullet, W_\bullet)$. The filtration $W_{\bullet}$ is increasing, but we can convert it into a decreasing filtration $W^{\bullet}$ by setting $W^i:=W_{-i}$ as we did before. From this, by Thm. \ref{thm:specseq}, we obtain a spectral sequence
+\[E_1^{p,q}=\HH^{p+q}(Y,\Gr^{W^\bullet}_{q} B^\bullet) \Rightarrow \HH^{p+q}(Y,B^\bullet)\]
+for the filtered complex $(B^\bullet, W^\bullet)$. By Thm. \ref{MainThm}, this sequence degenerates at $E_2$, so we have $E_2^{p,q} = \Gr^{W^\bullet}_{q}\HH^{p+q}(Y,B^{\bullet})$.
+ 
+To compute this spectral sequence, consider the complex $B^{\bullet,\bullet}$ (for $B^{\bullet,\bullet}$ as above), given by
+\begin{align*}
+\Omega^\bullet_{V(x,y)}\oplus &\Omega^\bullet_{V(y,z)}\oplus \Omega^\bullet_{V(x,z)} \\
+&{d_\wedge}{\uparrow} \\
+\Omega^\bullet_{V(x)} \oplus &\Omega^\bullet_{V(y)}\oplus \Omega^\bullet_{V(z)}.
+\end{align*}
+Observing that $E_1^{p,q} = \HH^{p+q}(Y,\Gr^{W^\bullet}_{q} B^\bullet) = \HH^p(Y,B^{\bullet,q})$, taking hypercohomology of the rows yields
+\begin{center}
+ 
+\begin{minipage}[c][0.25\textheight]{0.2\textwidth}
+\xymatrix
+{
+ \HH^0(B^{\bullet,1})  &\HH^1(B^{\bullet,1})  &\HH^2(B^{\bullet,1}) \\
+ \HH^0(B^{\bullet,0}) \ar[u] &\HH^1(B^{\bullet,0})  \ar[u]&\HH^2(B^{\bullet,0}) \ar[u]\\
+ }
+\end{minipage}
+\ $\simeq$\ 
+\begin{minipage}[c][0.25\textheight]{0.2\textwidth}
+\xymatrix
+{
+  \protect\substack{H^0(V(x,y),\CC)\\ \oplus H^0(V(y,z),\CC)\\ \oplus H^0(V(x,z),\CC)} &0 &0 \\
+ \protect\substack{H^0(V(x),\CC)\\ \oplus H^0(V(y),\CC)\\ \oplus H^0(V(z),\CC)} \ar[u] &0  & 
+ \protect\substack{H^2(V(x),\CC)\\ \oplus H^2(V(y),\CC)\\ \oplus H^2(V(z),\CC)} \ar[u]
+}
+\end{minipage}
+\end{center}
+To compute $E_2^{p,q}$, and hence $\Gr^{W^\bullet}_{q}\HH^{p+q}(Y,B^{\bullet})$, we compute the cohomology of these complexes. 
+The only non trivial map is the first one and it computes the usual homology of a circle $S^1$ since it is an alternating sum of restriction maps, namely 
+\begin{align*}
+    d_1 = \delta = d_\wedge \colon H^0(Y(1),\CC) = \langle [1_{Y_1}], [1_{Y_2}], [1_{Y_3}] \rangle &\lra H^0(Y(2),\CC) = \langle [1_{Y_{12}}], [1_{Y_{23}}], [1_{Y_{13}}] \rangle \\
+    (f,g,h) &\mapsto (g|_{12}-f|_{12},h|_{23}-g|_{23},h|_{13}-f|_{13}).
+\end{align*}
+Hence we obtain the $E_2$-page:
+\[
+\xymatrix
+{
+ \CC  &0  &0 \\
+ \CC &0 & \CC^3 \\
+}
+\]
+
+
+from which, summing along the anti-diagonals, we also read the cohomolgy of $Y$:
+
+\begin{eqnarray*}H^i(Y,\CC) = \HH^{i}(Y,B^{\bullet}) = \left\{\begin{array}{ll} \CC &\quad i=0\\  \CC &\quad i=1 \\   
+\CC^3 &\quad i=2 \\
+0&\quad\hbox{otherwise.} \end{array}\right.\\
+\end{eqnarray*}
+
+Now, to find the Hodge numbers $h^{p,q}H^i(Y,\CC)$, we go back to consider the increasing filtration $W_\bullet$ on $B^\bullet$ and in particular the shifted one induced in hypercohomology  $\tilde{W}_\bullet$ on $\HH^{k}(Y,B^{\bullet})$:
+\[
+\tilde{W}_m(\HH^{k}(Y,B^{\bullet})) \defeq \im(\HH^{k}(Y,W_{m-k}B^{\bullet}) \to \HH^{k}(Y,B^{\bullet}))
+\]
+So that, given $k=p+q$, we get 
+\[
+E_2^{p,q} = \Gr^{W_\bullet}_{-q}\HH^{k}(Y,B^{\bullet}) = \Gr^{\tilde{W}_\bullet}_{-q+k}\HH^{k}(Y,B^{\bullet}) = \Gr^{\tilde{W}_\bullet}_{p}\HH^{k}(Y,B^{\bullet}).
+\]
+Now to calculate the Hodge numbers, we look at the filtration $F$ on $B^\bullet$:
+
+\[
+\begin{tikzcd} % [row sep=small]
+F^0(B^\bullet) : & \Omega^0_{Y(1)} \arrow[r] & \Omega^0_{Y(2)} \oplus \Omega^1_{Y(1)} \\
+F^1(B^\bullet) : & 0\arrow[r] \arrow[u, phantom, sloped, "\subset"] & \Omega^1_{Y(1)} \arrow[u, phantom, sloped, "\subseteq"]\\
+F^2(B^\bullet) : & 0\arrow[r] \arrow[u, phantom, sloped, "\subset"] & 0 \arrow[u, phantom, sloped, "\subset"]\\
+\end{tikzcd}
+\]
+and the induced ones in hypercohomology, for $\HH^{0}(Y,B^{\bullet})$ and $\HH^{1}(Y,B^{\bullet})$:
+\begin{center}
+\begin{minipage}[c][0.2\textheight]{0.45\textwidth}
+\begin{tikzcd} [row sep=small]
+F^0(\HH^0(Y,B^\bullet)) : & \CC \\
+F^1(\HH^0(Y,B^\bullet)) : & 0 \arrow[u, phantom, sloped, "\subset"] \\
+\end{tikzcd}
+\end{minipage}% 
+\begin{minipage}[c][0.2\textheight]{0.45\textwidth}
+\begin{tikzcd} [row sep=small]
+F^0(\HH^1(Y,B^\bullet)) : & \CC \\
+F^1(\HH^1(Y,B^\bullet)) : & 0 \arrow[u, phantom, sloped, "\subset"] \\
+\end{tikzcd}
+\end{minipage}
+\end{center}
+since $\HH^0(Y,F^1 B^\bullet))=0$ and $\HH^1(Y,F^1 B^\bullet))= H^1(Y(1),\CC)= H^1(\PP^1,\CC)^{\oplus 3} = 0$. While for $\HH^{2}(Y,B^{\bullet})$:
+\[
+\begin{tikzcd} [row sep=small]
+F^0(\HH^2(Y,B^\bullet)) : & \CC^3 \\
+F^1(\HH^2(Y,B^\bullet)) : & \CC^3 \arrow[u, phantom, sloped, "\subset"] \\
+F^2(\HH^2(Y,B^\bullet)) : & 0 \arrow[u, phantom, sloped, "\subset"] \\
+\end{tikzcd}
+\]
+since  $\HH^2(Y,F^1 B^\bullet))= H^2(Y(1),\CC)= H^2(\PP^1,\CC)^{\oplus 3} = \CC^3$.
+
+Therefore we find
+\begin{eqnarray*}h^{p,q}H^2(Y,\CC) =& \Gr_F^p\Gr^{\tilde{W}}_{p+q}\HH^{2}(Y,B^{\bullet}) &= \left\{\begin{array}{ll} 3 &\quad p=q=1\\ 0&\quad\hbox{otherwise,}\end{array}\right.\\
+h^{p,q}H^1(Y,\CC) =& \Gr_F^p\Gr^{\tilde{W}}_{p+q}\HH^{1}(Y,B^{\bullet}) &= \left\{\begin{array}{ll} 1 &\quad p=q=0\\ 0&\quad\hbox{otherwise,}\end{array}\right.\\
+h^{p,q}H^0(Y,\CC)  =&  \Gr_F^p\Gr^{\tilde{W}}_{p+q}\HH^{0}(Y,B^{\bullet}) &= \left\{\begin{array}{ll} 1 &\quad p=q=0\\ 0&\quad\hbox{otherwise.}\end{array}\right.
+\end{eqnarray*}
+
+See how on all these cohomology groups the Hodge structures are pure, but on $H^1(Y,\CC)$ we have a weight zero Hodge structure instead of weight one, so it lies below the cohomology degree which is common for compact (singular) spaces as we know by Thm. \ref{deligne-numbers}.
+
+\end{es} 
+
+The mixed Hodge structures on a normal crossing space $Y$ is related to the combinatorial structure of $Y$, which is encoded in a topological space associated to $Y$ called the dual intersection complex.
+
+\begin{defn} 
+The \emph{dual intersection complex} $\Gamma$ of $Y$ is the simplicial complex with
+\begin{itemize}
+\item vertices indexed by the components $Y_i$ of $Y$, and
+\item one $k$-simplex, with vertices $Y_{i_1},...,Y_{i_{k+1}}$, for each connected component of $Y_{i_1}\cap...\cap Y_{i_{k+1}}$.
+\end{itemize} 
+We also use $\Gamma$ to denote the topological space given by the dual intersection complex.
+\end{defn}
+
+In Ex.~\ref{example-MHS4}, the dual intersection complex is a necklace of three intervals, glued to give a circle $\Gamma \simeq S^1$.
+ 
+We saw in Ex.~\ref{example-MHS4} that the cohomology of the dual intersection complex $\Gamma \simeq S^1$ played a role in the calculation of the hypercohomology of $B^{\bullet}$. This is an example of a general phenomenon. Indeed, the lemma below shows that the dual intersection complex $\Gamma$ determines the ranks of the lowest grade pieces of the mixed Hodge structure on $H^n(Y,\CC)$, as follows.
+
+\begin{lemma} 
+\label{gradeds-of-Y}
+$\Gr_{-\bullet}^W H^\bullet(Y,\CC)=H^\bullet(\Gamma,\CC)$.
+\end{lemma}
+
+\begin{proof} 
+Consider the spectral sequence
+\[E_1^{p,q}=\HH^{p+q}(Y,\Gr^{W^\bullet}_{q} B^\bullet) \Rightarrow \HH^{p+q}(Y,B^\bullet)\]
+as constructed in Ex. \ref{example-MHS4}. By Thm. \ref{MainThm}, this sequence degenerates at $E_2$.
+The first column of the first page:
+\[E_1^{0,0}\stackrel{d_1}{\longrightarrow}  E_1^{0,1}\stackrel{d_1}{\longrightarrow}  E_1^{0,2}\stackrel{d_1}{\longrightarrow} \cdots\]
+can be identified with the complex
+\[
+0\lra\HH^0(B^{\bullet,0})\stackrel{\delta}{\longrightarrow} \HH^0(B^{\bullet,1}) \stackrel{\delta}{\longrightarrow}\HH^0(B^{\bullet,2}) \lra \cdots
+\]
+which, as we saw before, can be identified with
+\[
+0\lra 
+\bigoplus_{1\le i_0\le N}H^0(Y_{i_0},\CC)\stackrel{\delta}{\longrightarrow} 
+\bigoplus_{1\le i_0<i_1\le N}H^0(Y_{i_0}\cap Y_{i_1},\CC)
+%\stackrel{\delta}{\longrightarrow} 
+%\bigoplus_{1\le i_0<i_1<i_2\le N}H^0(Y_{i_0}\cap Y_{i_1}\cap Y_{i_2},\CC)
+\lra \cdots\]
+which in turn can be identified with the \v{C}ech complex of $\Gamma$, so its cohomology is $H^\bullet(\Gamma,\CC)$. Thus, we see that $E_2^{0,q} = H^q(\Gamma,\CC)$.
+
+But the spectral sequence $E_2^{p,q}$ degenerates at $E_2$, so we also have 
+\[E_2^{0,q} = \Gr_{-q}^{W_\bullet}\HH^q(Y,B^{\bullet}) = \Gr_{-q}^{W_\bullet}H^q(Y,\CC),\]
+hence 
+\[
+H^q(\Gamma,\CC) = \Gr_{-q}^{W}H^q(Y,\CC)
+\]
+as required.\end{proof}
+
+\end{document}
